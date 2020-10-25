@@ -42,12 +42,14 @@ namespace CS_Proxy {
         readonly ProxyManager ProxyMgr = new ProxyManager(); //Holds Proxies which will need scanning
         //HashSet<MyProxy> ProxiesToScan = new HashSet<MyProxy>(); //Proxies to be scanned (same as those in ProxyMgr)
         readonly ProxyFilter filter = new ProxyFilter( "dangerous_ip_ranges.txt" );
+        readonly System.Timers.Timer _uiTimer = new System.Timers.Timer( 500 );
 
         public Form1() {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            _uiTimer.Elapsed += async (_, __) => await UpdateScannerUI();
             proxyView.ContextMenuStrip = contextMenuStrip1;
             ScapePanelUI();
             EnableScanUI();
@@ -339,7 +341,6 @@ namespace CS_Proxy {
             MyProxy.Timeout = Convert.ToInt32( timeoutProxiesNumUpDown.Value ) * 1000;
             CalcTimeoutQuartiles();
 
-            _uiTimer.Elapsed += async (sender, e) => await UpdateScannerUI();
             _uiTimer.Start();
 
             //Create the Threads
@@ -572,7 +573,6 @@ namespace CS_Proxy {
             //proxyView.Invoke(new Action(() => proxyView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)));
         }
 
-        readonly System.Timers.Timer _uiTimer = new System.Timers.Timer( 500 );
         private Task UpdateScannerUI() //This is updated periodically (on separate thread/timer) rather than potentially hundreds of threads calling this
         {
             if ( Scanner.TerminateThreads )
