@@ -25,8 +25,8 @@ using System.Text.RegularExpressions;
 namespace CS_Proxy.Proxy {
     internal class IPRange {
         private bool ParsingError = false;
-        private byte[] start = new byte[4] { 0, 0, 0, 0 };
-        private byte[] end = new byte[4] { 255, 255, 255, 255 };
+        private readonly byte[] start = new byte[4] { 0, 0, 0, 0 };
+        private readonly byte[] end = new byte[4] { 255, 255, 255, 255 };
         private int Length = 4; //ipv4 consists of 4 bytes
 
         public IPRange(string range) {
@@ -35,8 +35,7 @@ namespace CS_Proxy.Proxy {
             if ( !range.Contains( "–" ) ) { //Single IP ex: '127.*.*.*'
                 var parts = range.Split( new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries );
                 for ( var i = 0; i < parts.Length; ++i ) {
-                    byte b;
-                    if ( !byte.TryParse( parts[i], out b ) ) {
+                    if ( !byte.TryParse( parts[i], out var b ) ) {
                         Console.WriteLine( "Error parsing dangerous IP {0} into bytes!", range );
                         ParsingError = true;
                     } else {
@@ -50,8 +49,7 @@ namespace CS_Proxy.Proxy {
                     //Determine which of ranges is smallest for proper comparison
                     var smallest = 0;
                     var largest = 1;
-                    long range1, range2;
-                    if ( long.TryParse( ranges[0].Replace( ".", "" ), out range1 ) && long.TryParse( ranges[1].Replace( ".", "" ), out range2 ) ) {
+                    if ( long.TryParse( ranges[0].Replace( ".", "" ), out var range1 ) && long.TryParse( ranges[1].Replace( ".", "" ), out var range2 ) ) {
                         if ( range1 > range2 ) {
                             largest = 0;
                             smallest = 1;
