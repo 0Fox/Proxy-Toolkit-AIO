@@ -164,10 +164,8 @@ namespace CS_Proxy {
                 return;
             }
 
-            if ( Convert.ToInt32( threadCountNumUpDown.Value ) > URLMgr.Count ) {
-                MessageBox.Show( "Thread count greater than number of URLs.", "Too Many Threads", MessageBoxButtons.OK, MessageBoxIcon.Warning );
-                return;
-            }
+            if ( Convert.ToInt32( threadCountNumUpDown.Value ) > URLMgr.Count )
+                threadCountNumUpDown.Invoke( new Action( () => threadCountNumUpDown.Value = URLMgr.Count ) );
 
             if ( !HasInternet() ) {
                 statusLbl.Text = "Status: No Internet";
@@ -318,10 +316,8 @@ namespace CS_Proxy {
                 return;
             }
 
-            if ( Convert.ToInt32( threadsProxiesNumUpDown.Value ) >= ProxyMgr.Count ) {
-                MessageBox.Show( "Thread count greater than number of Proxies.", "Too Many Threads", MessageBoxButtons.OK, MessageBoxIcon.Warning );
-                return;
-            }
+            if ( Convert.ToInt32( threadsProxiesNumUpDown.Value ) > ProxyMgr.Count )
+                threadsProxiesNumUpDown.Invoke( new Action( () => threadsProxiesNumUpDown.Value = ProxyMgr.Count ) );
 
             ClearProxyView();
             if ( statusStrip2.Parent.InvokeRequired ) {
