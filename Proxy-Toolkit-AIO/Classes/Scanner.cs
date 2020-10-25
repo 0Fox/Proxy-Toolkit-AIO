@@ -41,7 +41,7 @@ namespace CS_Proxy.Classes.Multithreaded {
         public static int High { get; private set; }
         public static int Elite { get; private set; }
 
-        public bool isRunning { get; private set; }
+        public bool IsRunning { get; private set; }
 
         public Scanner(ProxyManager proxyMgr) {
             ProxyMgr = proxyMgr; //ref
@@ -57,6 +57,7 @@ namespace CS_Proxy.Classes.Multithreaded {
                 Trans = 0;
                 High = 0;
                 Elite = 0;
+                Scanned = 0;
                 if ( ProxyMgr != null )
                     ProxyMgr.Reset();
 
