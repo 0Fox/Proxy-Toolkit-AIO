@@ -78,7 +78,7 @@ namespace CS_Proxy.Classes.Multithreaded {
             return false;
         }
 
-        private List<MyProxy> proxiesFromHtml(string html) {
+        private List<MyProxy> ProxiesFromHtml(string html) {
             var proxies = new List<MyProxy>();
 
             /////Remove everything that can mislead
@@ -139,7 +139,7 @@ namespace CS_Proxy.Classes.Multithreaded {
 
                 try {
                     var html = WC.DownloadString( url );
-                    List<MyProxy> proxies = proxiesFromHtml( html );
+                    List<MyProxy> proxies = ProxiesFromHtml( html );
 
                     for ( var p = 0; p < proxies.Count; ++p ) {
                         if ( TerminateThreads ) //sometimes looping inside this can take long

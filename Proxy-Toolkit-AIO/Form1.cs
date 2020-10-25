@@ -65,7 +65,7 @@ namespace CS_Proxy {
                 Application.Exit();
             }
 
-            if ( !filter.isInitialized ) {
+            if ( !filter.IsInitialized ) {
                 removeDangCheck.Checked = false;
                 removeDangCheck.Visible = false;
             }
@@ -227,7 +227,7 @@ namespace CS_Proxy {
                 var nonDangerous = new HashSet<string>();
                 foreach ( var proxy in ProxiesScraped ) //looping thru hashset not encouraged but w/e
                 {
-                    if ( proxy != null && !filter.isDangerous( proxy ) )
+                    if ( proxy != null && !filter.IsDangerous( proxy ) )
                         nonDangerous.Add( proxy );
                 }
                 ProxyMgr.Initialize( nonDangerous ); //Don't have to create new instance because it already is a new instance
@@ -273,11 +273,11 @@ namespace CS_Proxy {
                         string proxy;
                         while ( (proxy = sr.ReadLine()) != null ) {
                             var myProxy = new MyProxy( proxy, true );
-                            if ( myProxy.isMalformed )
+                            if ( myProxy.IsMalformed )
                                 badProxies++;
                             else {
                                 if ( removeDangCheck.Checked ) {
-                                    if ( filter.isDangerous( myProxy.ToString() ) ) {
+                                    if ( filter.IsDangerous( myProxy.ToString() ) ) {
                                         dangerousProxies++;
                                         continue;
                                     }

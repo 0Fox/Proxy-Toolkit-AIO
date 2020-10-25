@@ -69,7 +69,7 @@ namespace CS_Proxy.Proxy {
             Type = ProxyType.Http;
 
             if ( Host.StartsWith( "0." ) ) {
-                isMalformed = true;
+                IsMalformed = true;
                 return;
             }
 
@@ -90,13 +90,13 @@ namespace CS_Proxy.Proxy {
         }
 
         public MyProxy(string host, int port) {
-            isMalformed = false;
+            IsMalformed = false;
             Initialize( host, port );
         }
 
-        public bool isMalformed { get; private set; }
+        public bool IsMalformed { get; private set; }
         public MyProxy(string proxy, bool? checkFormatting = false) {
-            isMalformed = false;
+            IsMalformed = false;
             var parts = proxy.Split( new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries );
 
             if ( parts.Length == 2 ) {
@@ -109,7 +109,7 @@ namespace CS_Proxy.Proxy {
                     if ( int.TryParse( strPort, out intPort ) )
                         Initialize( strHost, intPort );
                     else {
-                        isMalformed = true; //unknown port
+                        IsMalformed = true; //unknown port
                         Initialize( strHost, 80 );
                     }
                 } else {
@@ -117,7 +117,7 @@ namespace CS_Proxy.Proxy {
                     Initialize( parts[0], Convert.ToInt32( parts[1] ) );
                 }
             } else {
-                isMalformed = true;
+                IsMalformed = true;
                 Initialize( proxy, 80 ); //unknown parts
             }
         }

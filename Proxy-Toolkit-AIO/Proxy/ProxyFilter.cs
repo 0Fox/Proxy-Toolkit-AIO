@@ -57,13 +57,13 @@ namespace CS_Proxy.Proxy {
                     }
 
                     //Store them
-                    start = getIPBytes( ranges[smallest] );
-                    end = getIPBytes( ranges[largest] );
+                    start = GetIPBytes( ranges[smallest] );
+                    end = GetIPBytes( ranges[largest] );
                 }
             }
         }
 
-        public static byte[] getByteArray(string ip) {
+        public static byte[] GetByteArray(string ip) {
             if ( ip.Contains( ":" ) )
                 ip = ip.Substring( 0, ip.IndexOf( ":" ) );
 
@@ -77,7 +77,7 @@ namespace CS_Proxy.Proxy {
             return bytes.ToArray();
         }
 
-        private byte[] getIPBytes(string ip) {
+        private byte[] GetIPBytes(string ip) {
             var bytes = new byte[4];
             var parts = ip.Split( new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries );
             for ( var i = 0; i < parts.Length; ++i ) {
@@ -97,7 +97,7 @@ namespace CS_Proxy.Proxy {
             return bytes;
         }
 
-        public bool isInRange(string ip) {
+        public bool IsInRange(string ip) {
             if ( ParsingError )
                 return false;
 
@@ -105,11 +105,11 @@ namespace CS_Proxy.Proxy {
             if ( portIndex > 0 )
                 ip = ip.Substring( 0, portIndex );
 
-            var b = getIPBytes( ip );
-            return isInRange( b );
+            var b = GetIPBytes( ip );
+            return IsInRange( b );
         }
 
-        public bool isInRange(byte[] b) {
+        public bool IsInRange(byte[] b) {
             if ( ParsingError )
                 return false;
 
@@ -130,19 +130,19 @@ namespace CS_Proxy.Proxy {
     /// </summary>
     public class ProxyFilter {
         private readonly List<IPRange> DangerousIPs = new List<IPRange>();
-        public bool isInitialized { get; private set; }
+        public bool IsInitialized { get; private set; }
 
         public ProxyFilter(string filterFile) {
-            isInitialized = PopulateDangerousIPs( filterFile );
-            if ( !isInitialized )
+            IsInitialized = PopulateDangerousIPs( filterFile );
+            if ( !IsInitialized )
                 Console.WriteLine( "Dangerous IP range filter could NOT be initialized." );
         }
 
-        private bool isNumeric(string str) {
+        private bool IsNumeric(string str) {
             return str.All( char.IsDigit );
         }
 
-        private bool isNumeric(char c) {
+        private bool IsNumeric(char c) {
             return char.IsDigit( c );
         }
 
@@ -157,7 +157,7 @@ namespace CS_Proxy.Proxy {
                 using ( var sr = new StreamReader( fs, Encoding.UTF8 ) ) {
                     string line;
                     while ( (line = sr.ReadLine()) != null ) {
-                        if ( line.Length == 0 || !isNumeric( line[0] ) )
+                        if ( line.Length == 0 || !IsNumeric( line[0] ) )
                             continue;
 
                         Match match = Regex.Match( line, regExpr );
@@ -175,16 +175,16 @@ namespace CS_Proxy.Proxy {
             return false;
         }
 
-        public bool isDangerous(string proxy) {
-            if ( !isInitialized || proxy.Length < 8 )
+        public bool IsDangerous(string proxy) {
+            if ( !IsInitialized || proxy.Length < 8 )
                 return false;
 
-            var buf = IPRange.getByteArray( proxy );
+            var buf = IPRange.GetByteArray( proxy );
             if ( buf.Length <= 0 )
                 return false;
 
             for ( var i = 0; i < DangerousIPs.Count; ++i ) {
-                if ( DangerousIPs[i].isInRange( buf ) )
+                if ( DangerousIPs[i].IsInRange( buf ) )
                     return true;
             }
             return false;

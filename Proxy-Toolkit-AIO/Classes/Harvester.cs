@@ -62,7 +62,7 @@ namespace CS_Proxy.Classes.Singlethreaded {
             BlogList.Add( "forum" );
         }
 
-        private bool isInBloglist(string url) {
+        private bool IsInBloglist(string url) {
             foreach ( var str in BlogList ) {
                 if ( url.Contains( str ) )
                     return true;
@@ -80,7 +80,7 @@ namespace CS_Proxy.Classes.Singlethreaded {
             BlackList.Add( "twitter" );
         }
 
-        private bool isBlacklisted(string url) {
+        private bool IsBlacklisted(string url) {
             for ( var i = 0; i < BlackList.Count; ++i ) {
                 if ( url.Contains( BlackList[i] ) )
                     return true;
@@ -123,11 +123,11 @@ namespace CS_Proxy.Classes.Singlethreaded {
                         var url = link.GetAttributeValue( "href", string.Empty );
 
                         if ( Uri.IsWellFormedUriString( url, UriKind.Absolute ) ) {
-                            if ( !isBlacklisted( url ) && Harvested.Add( url ) ) {
+                            if ( !IsBlacklisted( url ) && Harvested.Add( url ) ) {
                                 Console.WriteLine( " - {0}", url );
                                 Program.UI.AddURL( url, qNo, Queries.Count, page, query );
 
-                                if ( isInBloglist( url ) ) {
+                                if ( IsInBloglist( url ) ) {
                                     var _url = url.Replace( "http://", "" ).Replace( "https://", "" );
                                     var baseUrl = string.Concat( "http://", _url.Contains( "/" ) ? _url.Substring( 0, _url.IndexOf( "/" ) ) : _url );
                                     var docu2 = new HtmlDocument();
@@ -153,7 +153,7 @@ namespace CS_Proxy.Classes.Singlethreaded {
                                         }
 
                                         if ( Uri.IsWellFormedUriString( url2, UriKind.Absolute ) ) {
-                                            if ( !isBlacklisted( url ) && Harvested.Add( url ) ) {
+                                            if ( !IsBlacklisted( url ) && Harvested.Add( url ) ) {
                                                 Console.WriteLine( " - {0}", url );
                                                 Program.UI.AddURL( url, qNo, Queries.Count, page, query );
                                             }
