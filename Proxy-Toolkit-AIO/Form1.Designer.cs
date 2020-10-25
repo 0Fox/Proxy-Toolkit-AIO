@@ -143,9 +143,9 @@ namespace CS_Proxy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // tabControl1
-            // 
+            //
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -156,9 +156,9 @@ namespace CS_Proxy
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(382, 398);
             this.tabControl1.TabIndex = 0;
-            // 
+            //
             // tabPage1
-            // 
+            //
             this.tabPage1.Controls.Add(this.questionScraperBtn);
             this.tabPage1.Controls.Add(this.autoScanCheck);
             this.tabPage1.Controls.Add(this.statusStrip1);
@@ -180,9 +180,9 @@ namespace CS_Proxy
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scraper";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
+            //
             // questionScraperBtn
-            // 
+            //
             this.questionScraperBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionScraperBtn.Location = new System.Drawing.Point(10, 7);
             this.questionScraperBtn.Name = "questionScraperBtn";
@@ -190,10 +190,10 @@ namespace CS_Proxy
             this.questionScraperBtn.TabIndex = 16;
             this.questionScraperBtn.Text = "?";
             this.questionScraperBtn.UseVisualStyleBackColor = true;
-            this.questionScraperBtn.Click += new System.EventHandler(this.questionScraperBtn_Click);
-            // 
+            this.questionScraperBtn.Click += new System.EventHandler(this.QuestionScraperBtn_Click);
+            //
             // autoScanCheck
-            // 
+            //
             this.autoScanCheck.AutoSize = true;
             this.autoScanCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoScanCheck.Location = new System.Drawing.Point(124, 34);
@@ -202,9 +202,9 @@ namespace CS_Proxy
             this.autoScanCheck.TabIndex = 15;
             this.autoScanCheck.Text = "Auto-Scan";
             this.autoScanCheck.UseVisualStyleBackColor = true;
-            // 
+            //
             // statusStrip1
-            // 
+            //
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLbl});
             this.statusStrip1.Location = new System.Drawing.Point(3, 344);
@@ -212,22 +212,22 @@ namespace CS_Proxy
             this.statusStrip1.Size = new System.Drawing.Size(368, 22);
             this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
-            // 
+            //
             // statusLbl
-            // 
+            //
             this.statusLbl.Name = "statusLbl";
-            this.statusLbl.Size = new System.Drawing.Size(49, 17);
+            this.statusLbl.Size = new System.Drawing.Size(50, 17);
             this.statusLbl.Text = "hehe xD";
-            // 
+            //
             // scrapeProgBar
-            // 
+            //
             this.scrapeProgBar.Location = new System.Drawing.Point(7, 309);
             this.scrapeProgBar.Name = "scrapeProgBar";
             this.scrapeProgBar.Size = new System.Drawing.Size(228, 23);
             this.scrapeProgBar.TabIndex = 13;
-            // 
+            //
             // timeoutNumUpDown
-            // 
+            //
             this.timeoutNumUpDown.Location = new System.Drawing.Point(306, 309);
             this.timeoutNumUpDown.Minimum = new decimal(new int[] {
             1,
@@ -242,28 +242,28 @@ namespace CS_Proxy
             0,
             0,
             0});
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(243, 311);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 16);
             this.label1.TabIndex = 11;
             this.label1.Text = "Timeout:";
-            // 
+            //
             // scrapeBtn
-            // 
+            //
             this.scrapeBtn.Location = new System.Drawing.Point(7, 278);
             this.scrapeBtn.Name = "scrapeBtn";
             this.scrapeBtn.Size = new System.Drawing.Size(228, 26);
             this.scrapeBtn.TabIndex = 10;
             this.scrapeBtn.Text = "Scrape";
             this.scrapeBtn.UseVisualStyleBackColor = true;
-            this.scrapeBtn.Click += new System.EventHandler(this.scrapeBtn_Click);
-            // 
+            this.scrapeBtn.Click += new System.EventHandler(this.ScrapeBtn_Click);
+            //
             // threadCountNumUpDown
-            // 
+            //
             this.threadCountNumUpDown.Location = new System.Drawing.Point(306, 281);
             this.threadCountNumUpDown.Minimum = new decimal(new int[] {
             1,
@@ -278,18 +278,18 @@ namespace CS_Proxy
             0,
             0,
             0});
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(241, 283);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 16);
             this.label3.TabIndex = 8;
             this.label3.Text = "Threads:";
-            // 
+            //
             // scrapedPanel
-            // 
+            //
             this.scrapedPanel.Controls.Add(this.toScannerBtn);
             this.scrapedPanel.Controls.Add(this.clearScrapedBtn);
             this.scrapedPanel.Controls.Add(this.saveScrapedBtn);
@@ -297,9 +297,9 @@ namespace CS_Proxy
             this.scrapedPanel.Name = "scrapedPanel";
             this.scrapedPanel.Size = new System.Drawing.Size(109, 81);
             this.scrapedPanel.TabIndex = 7;
-            // 
+            //
             // toScannerBtn
-            // 
+            //
             this.toScannerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toScannerBtn.Location = new System.Drawing.Point(1, 1);
             this.toScannerBtn.Name = "toScannerBtn";
@@ -307,10 +307,10 @@ namespace CS_Proxy
             this.toScannerBtn.TabIndex = 5;
             this.toScannerBtn.Text = "To Scanner";
             this.toScannerBtn.UseVisualStyleBackColor = true;
-            this.toScannerBtn.Click += new System.EventHandler(this.toScannerBtn_Click);
-            // 
+            this.toScannerBtn.Click += new System.EventHandler(this.ToScannerBtn_Click);
+            //
             // clearScrapedBtn
-            // 
+            //
             this.clearScrapedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearScrapedBtn.Location = new System.Drawing.Point(1, 53);
             this.clearScrapedBtn.Name = "clearScrapedBtn";
@@ -318,10 +318,10 @@ namespace CS_Proxy
             this.clearScrapedBtn.TabIndex = 6;
             this.clearScrapedBtn.Text = "Clear";
             this.clearScrapedBtn.UseVisualStyleBackColor = true;
-            this.clearScrapedBtn.Click += new System.EventHandler(this.clearScrapedBtn_Click);
-            // 
+            this.clearScrapedBtn.Click += new System.EventHandler(this.ClearScrapedBtn_Click);
+            //
             // saveScrapedBtn
-            // 
+            //
             this.saveScrapedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveScrapedBtn.Location = new System.Drawing.Point(1, 27);
             this.saveScrapedBtn.Name = "saveScrapedBtn";
@@ -329,10 +329,10 @@ namespace CS_Proxy
             this.saveScrapedBtn.TabIndex = 4;
             this.saveScrapedBtn.Text = "Save";
             this.saveScrapedBtn.UseVisualStyleBackColor = true;
-            this.saveScrapedBtn.Click += new System.EventHandler(this.saveScrapedBtn_Click);
-            // 
+            this.saveScrapedBtn.Click += new System.EventHandler(this.SaveScrapedBtn_Click);
+            //
             // scrapedLbl
-            // 
+            //
             this.scrapedLbl.AutoSize = true;
             this.scrapedLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scrapedLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -341,37 +341,37 @@ namespace CS_Proxy
             this.scrapedLbl.Size = new System.Drawing.Size(73, 16);
             this.scrapedLbl.TabIndex = 3;
             this.scrapedLbl.Text = "Scraped: 0";
-            // 
+            //
             // scrapedListBox
-            // 
+            //
             this.scrapedListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scrapedListBox.FormattingEnabled = true;
             this.scrapedListBox.Location = new System.Drawing.Point(7, 59);
             this.scrapedListBox.Name = "scrapedListBox";
             this.scrapedListBox.Size = new System.Drawing.Size(361, 212);
             this.scrapedListBox.TabIndex = 2;
-            // 
+            //
             // urlsToScrapeLbl
-            // 
+            //
             this.urlsToScrapeLbl.AutoSize = true;
             this.urlsToScrapeLbl.Location = new System.Drawing.Point(103, 17);
             this.urlsToScrapeLbl.Name = "urlsToScrapeLbl";
             this.urlsToScrapeLbl.Size = new System.Drawing.Size(122, 16);
             this.urlsToScrapeLbl.TabIndex = 1;
             this.urlsToScrapeLbl.Text = "URLs To Scrape: 0";
-            // 
+            //
             // importURLsBtn
-            // 
+            //
             this.importURLsBtn.Location = new System.Drawing.Point(241, 11);
             this.importURLsBtn.Name = "importURLsBtn";
             this.importURLsBtn.Size = new System.Drawing.Size(126, 26);
             this.importURLsBtn.TabIndex = 0;
             this.importURLsBtn.Text = "Import URLs";
             this.importURLsBtn.UseVisualStyleBackColor = true;
-            this.importURLsBtn.Click += new System.EventHandler(this.importURLsBtn_Click);
-            // 
+            this.importURLsBtn.Click += new System.EventHandler(this.ImportURLsBtn_Click);
+            //
             // tabPage2
-            // 
+            //
             this.tabPage2.Controls.Add(this.removeDangCheck);
             this.tabPage2.Controls.Add(this.socksCheck);
             this.tabPage2.Controls.Add(this.httpCheck);
@@ -395,9 +395,9 @@ namespace CS_Proxy
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Scanner";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
+            //
             // removeDangCheck
-            // 
+            //
             this.removeDangCheck.AutoSize = true;
             this.removeDangCheck.Checked = true;
             this.removeDangCheck.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -408,9 +408,9 @@ namespace CS_Proxy
             this.removeDangCheck.TabIndex = 28;
             this.removeDangCheck.Text = "Remove Dangerous";
             this.removeDangCheck.UseVisualStyleBackColor = true;
-            // 
+            //
             // socksCheck
-            // 
+            //
             this.socksCheck.AutoSize = true;
             this.socksCheck.Checked = true;
             this.socksCheck.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -421,10 +421,10 @@ namespace CS_Proxy
             this.socksCheck.TabIndex = 26;
             this.socksCheck.Text = "SOCKS";
             this.socksCheck.UseVisualStyleBackColor = true;
-            this.socksCheck.CheckedChanged += new System.EventHandler(this.socksCheck_CheckedChanged);
-            // 
+            this.socksCheck.CheckedChanged += new System.EventHandler(this.SocksCheck_CheckedChanged);
+            //
             // httpCheck
-            // 
+            //
             this.httpCheck.AutoSize = true;
             this.httpCheck.Checked = true;
             this.httpCheck.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -435,10 +435,10 @@ namespace CS_Proxy
             this.httpCheck.TabIndex = 25;
             this.httpCheck.Text = "HTTP";
             this.httpCheck.UseVisualStyleBackColor = true;
-            this.httpCheck.CheckedChanged += new System.EventHandler(this.httpCheck_CheckedChanged);
-            // 
+            this.httpCheck.CheckedChanged += new System.EventHandler(this.HttpCheck_CheckedChanged);
+            //
             // proxyJudgesComboBox
-            // 
+            //
             this.proxyJudgesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.proxyJudgesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proxyJudgesComboBox.FormattingEnabled = true;
@@ -457,10 +457,10 @@ namespace CS_Proxy
             this.proxyJudgesComboBox.Name = "proxyJudgesComboBox";
             this.proxyJudgesComboBox.Size = new System.Drawing.Size(206, 21);
             this.proxyJudgesComboBox.TabIndex = 24;
-            this.proxyJudgesComboBox.SelectedIndexChanged += new System.EventHandler(this.proxyJudgesComboBox_SelectedIndexChanged);
-            // 
+            this.proxyJudgesComboBox.SelectedIndexChanged += new System.EventHandler(this.ProxyJudgesComboBox_SelectedIndexChanged);
+            //
             // label5
-            // 
+            //
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(10, 10);
@@ -468,9 +468,9 @@ namespace CS_Proxy
             this.label5.Size = new System.Drawing.Size(80, 15);
             this.label5.TabIndex = 23;
             this.label5.Text = "Proxy Judge: ";
-            // 
+            //
             // deadLbl
-            // 
+            //
             this.deadLbl.AutoSize = true;
             this.deadLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -479,9 +479,9 @@ namespace CS_Proxy
             this.deadLbl.Size = new System.Drawing.Size(57, 15);
             this.deadLbl.TabIndex = 22;
             this.deadLbl.Text = "Dead = 0";
-            // 
+            //
             // aliveLbl
-            // 
+            //
             this.aliveLbl.AutoSize = true;
             this.aliveLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aliveLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -490,9 +490,9 @@ namespace CS_Proxy
             this.aliveLbl.Size = new System.Drawing.Size(52, 15);
             this.aliveLbl.TabIndex = 21;
             this.aliveLbl.Text = "Alive = 0";
-            // 
+            //
             // statusStrip2
-            // 
+            //
             this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scanProgBar,
             this.scanPercentLbl});
@@ -501,20 +501,20 @@ namespace CS_Proxy
             this.statusStrip2.Size = new System.Drawing.Size(368, 22);
             this.statusStrip2.TabIndex = 20;
             this.statusStrip2.Text = "statusStrip2";
-            // 
+            //
             // scanProgBar
-            // 
+            //
             this.scanProgBar.Name = "scanProgBar";
             this.scanProgBar.Size = new System.Drawing.Size(200, 16);
-            // 
+            //
             // scanPercentLbl
-            // 
+            //
             this.scanPercentLbl.Name = "scanPercentLbl";
             this.scanPercentLbl.Size = new System.Drawing.Size(35, 17);
             this.scanPercentLbl.Text = "100%";
-            // 
+            //
             // timeoutProxiesNumUpDown
-            // 
+            //
             this.timeoutProxiesNumUpDown.Location = new System.Drawing.Point(300, 296);
             this.timeoutProxiesNumUpDown.Minimum = new decimal(new int[] {
             1,
@@ -529,19 +529,19 @@ namespace CS_Proxy
             0,
             0,
             0});
-            this.timeoutProxiesNumUpDown.ValueChanged += new System.EventHandler(this.timeoutProxiesNumUpDown_ValueChanged);
-            // 
+            this.timeoutProxiesNumUpDown.ValueChanged += new System.EventHandler(this.TimeoutProxiesNumUpDown_ValueChanged);
+            //
             // label2
-            // 
+            //
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(237, 298);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 16);
             this.label2.TabIndex = 17;
             this.label2.Text = "Timeout:";
-            // 
+            //
             // scanProxiesBtn
-            // 
+            //
             this.scanProxiesBtn.Enabled = false;
             this.scanProxiesBtn.Location = new System.Drawing.Point(7, 273);
             this.scanProxiesBtn.Name = "scanProxiesBtn";
@@ -549,10 +549,10 @@ namespace CS_Proxy
             this.scanProxiesBtn.TabIndex = 16;
             this.scanProxiesBtn.Text = "Scan";
             this.scanProxiesBtn.UseVisualStyleBackColor = true;
-            this.scanProxiesBtn.Click += new System.EventHandler(this.scanProxiesBtn_Click);
-            // 
+            this.scanProxiesBtn.Click += new System.EventHandler(this.ScanProxiesBtn_Click);
+            //
             // threadsProxiesNumUpDown
-            // 
+            //
             this.threadsProxiesNumUpDown.Location = new System.Drawing.Point(300, 272);
             this.threadsProxiesNumUpDown.Maximum = new decimal(new int[] {
             1000,
@@ -572,18 +572,18 @@ namespace CS_Proxy
             0,
             0,
             0});
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(235, 274);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 16);
             this.label4.TabIndex = 14;
             this.label4.Text = "Threads:";
-            // 
+            //
             // groupBox1
-            // 
+            //
             this.groupBox1.Controls.Add(this.proxyView);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBox1.Location = new System.Drawing.Point(7, 70);
@@ -592,9 +592,9 @@ namespace CS_Proxy
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Proxies:";
-            // 
+            //
             // proxyView
-            // 
+            //
             this.proxyView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.proxyHeader,
             this.latencyHeader,
@@ -603,35 +603,36 @@ namespace CS_Proxy
             this.proxyView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proxyView.FullRowSelect = true;
             this.proxyView.GridLines = true;
+            this.proxyView.HideSelection = false;
             this.proxyView.Location = new System.Drawing.Point(6, 21);
             this.proxyView.Name = "proxyView";
             this.proxyView.Size = new System.Drawing.Size(348, 167);
             this.proxyView.TabIndex = 0;
             this.proxyView.UseCompatibleStateImageBehavior = false;
             this.proxyView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // proxyHeader
-            // 
+            //
             this.proxyHeader.Text = "Proxy";
             this.proxyHeader.Width = 125;
-            // 
+            //
             // latencyHeader
-            // 
+            //
             this.latencyHeader.Text = "Latency";
             this.latencyHeader.Width = 62;
-            // 
+            //
             // typeHeader
-            // 
+            //
             this.typeHeader.Text = "Type";
             this.typeHeader.Width = 65;
-            // 
+            //
             // levelHeader
-            // 
+            //
             this.levelHeader.Text = "Level";
             this.levelHeader.Width = 75;
-            // 
+            //
             // proxiesToScanLbl
-            // 
+            //
             this.proxiesToScanLbl.AutoSize = true;
             this.proxiesToScanLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proxiesToScanLbl.Location = new System.Drawing.Point(250, 7);
@@ -639,19 +640,19 @@ namespace CS_Proxy
             this.proxiesToScanLbl.Size = new System.Drawing.Size(105, 15);
             this.proxiesToScanLbl.TabIndex = 3;
             this.proxiesToScanLbl.Text = "Proxies to Scan: 0";
-            // 
+            //
             // importProxiesBtn
-            // 
+            //
             this.importProxiesBtn.Location = new System.Drawing.Point(238, 25);
             this.importProxiesBtn.Name = "importProxiesBtn";
             this.importProxiesBtn.Size = new System.Drawing.Size(129, 26);
             this.importProxiesBtn.TabIndex = 2;
             this.importProxiesBtn.Text = "Import Proxies";
             this.importProxiesBtn.UseVisualStyleBackColor = true;
-            this.importProxiesBtn.Click += new System.EventHandler(this.importProxiesBtn_Click);
-            // 
+            this.importProxiesBtn.Click += new System.EventHandler(this.ImportProxiesBtn_Click);
+            //
             // tabPage3
-            // 
+            //
             this.tabPage3.Controls.Add(this.statusStrip3);
             this.tabPage3.Controls.Add(this.toScraperBtn);
             this.tabPage3.Controls.Add(this.queriesLeftLbl);
@@ -668,9 +669,9 @@ namespace CS_Proxy
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "URL Harvester";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
+            //
             // statusStrip3
-            // 
+            //
             this.statusStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.harvestProgBar,
             this.harvestStatusLbl});
@@ -679,22 +680,22 @@ namespace CS_Proxy
             this.statusStrip3.Size = new System.Drawing.Size(368, 22);
             this.statusStrip3.TabIndex = 8;
             this.statusStrip3.Text = "statusStrip3";
-            // 
+            //
             // harvestProgBar
-            // 
+            //
             this.harvestProgBar.Name = "harvestProgBar";
             this.harvestProgBar.Size = new System.Drawing.Size(121, 16);
             this.harvestProgBar.Visible = false;
-            // 
+            //
             // harvestStatusLbl
-            // 
+            //
             this.harvestStatusLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.harvestStatusLbl.Name = "harvestStatusLbl";
             this.harvestStatusLbl.Size = new System.Drawing.Size(64, 17);
             this.harvestStatusLbl.Text = "Status: Idle";
-            // 
+            //
             // toScraperBtn
-            // 
+            //
             this.toScraperBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toScraperBtn.Location = new System.Drawing.Point(271, 285);
             this.toScraperBtn.Name = "toScraperBtn";
@@ -702,10 +703,10 @@ namespace CS_Proxy
             this.toScraperBtn.TabIndex = 7;
             this.toScraperBtn.Text = "To Scraper";
             this.toScraperBtn.UseVisualStyleBackColor = true;
-            this.toScraperBtn.Click += new System.EventHandler(this.toScraperBtn_Click);
-            // 
+            this.toScraperBtn.Click += new System.EventHandler(this.ToScraperBtn_Click);
+            //
             // queriesLeftLbl
-            // 
+            //
             this.queriesLeftLbl.AutoSize = true;
             this.queriesLeftLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.queriesLeftLbl.Location = new System.Drawing.Point(272, 201);
@@ -713,9 +714,9 @@ namespace CS_Proxy
             this.queriesLeftLbl.Size = new System.Drawing.Size(90, 13);
             this.queriesLeftLbl.TabIndex = 6;
             this.queriesLeftLbl.Text = "Queries: 100/100";
-            // 
+            //
             // deleteHarvestItemBtn
-            // 
+            //
             this.deleteHarvestItemBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteHarvestItemBtn.Location = new System.Drawing.Point(271, 258);
             this.deleteHarvestItemBtn.Name = "deleteHarvestItemBtn";
@@ -723,20 +724,20 @@ namespace CS_Proxy
             this.deleteHarvestItemBtn.TabIndex = 5;
             this.deleteHarvestItemBtn.Text = "Delete";
             this.deleteHarvestItemBtn.UseVisualStyleBackColor = true;
-            this.deleteHarvestItemBtn.Click += new System.EventHandler(this.deleteHarvestItemBtn_Click);
-            // 
+            this.deleteHarvestItemBtn.Click += new System.EventHandler(this.DeleteHarvestItemBtn_Click);
+            //
             // saveHarvestBtn
-            // 
+            //
             this.saveHarvestBtn.Location = new System.Drawing.Point(270, 316);
             this.saveHarvestBtn.Name = "saveHarvestBtn";
             this.saveHarvestBtn.Size = new System.Drawing.Size(98, 25);
             this.saveHarvestBtn.TabIndex = 4;
             this.saveHarvestBtn.Text = "&Save";
             this.saveHarvestBtn.UseVisualStyleBackColor = true;
-            this.saveHarvestBtn.Click += new System.EventHandler(this.saveHarvestBtn_Click);
-            // 
+            this.saveHarvestBtn.Click += new System.EventHandler(this.SaveHarvestBtn_Click);
+            //
             // clearHarvestBtn
-            // 
+            //
             this.clearHarvestBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearHarvestBtn.Location = new System.Drawing.Point(271, 231);
             this.clearHarvestBtn.Name = "clearHarvestBtn";
@@ -744,10 +745,10 @@ namespace CS_Proxy
             this.clearHarvestBtn.TabIndex = 3;
             this.clearHarvestBtn.Text = "Clear";
             this.clearHarvestBtn.UseVisualStyleBackColor = true;
-            this.clearHarvestBtn.Click += new System.EventHandler(this.clearHarvestBtn_Click);
-            // 
+            this.clearHarvestBtn.Click += new System.EventHandler(this.ClearHarvestBtn_Click);
+            //
             // urlsHarvestedLbl
-            // 
+            //
             this.urlsHarvestedLbl.AutoSize = true;
             this.urlsHarvestedLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urlsHarvestedLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -756,18 +757,18 @@ namespace CS_Proxy
             this.urlsHarvestedLbl.Size = new System.Drawing.Size(55, 16);
             this.urlsHarvestedLbl.TabIndex = 2;
             this.urlsHarvestedLbl.Text = "URLs: 0";
-            // 
+            //
             // harvestBox
-            // 
+            //
             this.harvestBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.harvestBox.FormattingEnabled = true;
             this.harvestBox.Location = new System.Drawing.Point(13, 181);
             this.harvestBox.Name = "harvestBox";
             this.harvestBox.Size = new System.Drawing.Size(251, 160);
             this.harvestBox.TabIndex = 1;
-            // 
+            //
             // groupBox2
-            // 
+            //
             this.groupBox2.Controls.Add(this.linkLabel2);
             this.groupBox2.Controls.Add(this.linkLabel1);
             this.groupBox2.Controls.Add(this.harvestBtn);
@@ -781,9 +782,9 @@ namespace CS_Proxy
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "BING Queries:";
-            // 
+            //
             // linkLabel2
-            // 
+            //
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel2.Location = new System.Drawing.Point(289, 40);
@@ -792,10 +793,10 @@ namespace CS_Proxy
             this.linkLabel2.TabIndex = 5;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "{DateTime}";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            // 
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
+            //
             // linkLabel1
-            // 
+            //
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.Location = new System.Drawing.Point(268, 25);
@@ -804,10 +805,10 @@ namespace CS_Proxy
             this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "BING Operators";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            //
             // harvestBtn
-            // 
+            //
             this.harvestBtn.ForeColor = System.Drawing.Color.Black;
             this.harvestBtn.Location = new System.Drawing.Point(6, 132);
             this.harvestBtn.Name = "harvestBtn";
@@ -815,10 +816,10 @@ namespace CS_Proxy
             this.harvestBtn.TabIndex = 3;
             this.harvestBtn.Text = "Harvest";
             this.harvestBtn.UseVisualStyleBackColor = true;
-            this.harvestBtn.Click += new System.EventHandler(this.harvestBtn_Click);
-            // 
+            this.harvestBtn.Click += new System.EventHandler(this.HarvestBtn_Click);
+            //
             // pagesNumUpDown
-            // 
+            //
             this.pagesNumUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pagesNumUpDown.ForeColor = System.Drawing.Color.Black;
             this.pagesNumUpDown.Location = new System.Drawing.Point(298, 134);
@@ -835,9 +836,9 @@ namespace CS_Proxy
             0,
             0,
             0});
-            // 
+            //
             // queryRTBox
-            // 
+            //
             this.queryRTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.queryRTBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.queryRTBox.ForeColor = System.Drawing.Color.Teal;
@@ -848,10 +849,10 @@ namespace CS_Proxy
             this.queryRTBox.Text = "proxies inbody:{dd}-{mmm}-{yyyy}\nproxies inbody:{dd} {mmm} {yyyy}\nproxies inbody:" +
     "{d}\nsocks proxies inbody:{d}\nhttp proxies inbody:{d}\nproxy inbody:{d}\nfresh prox" +
     "ies inbody:{d}";
-            this.queryRTBox.TextChanged += new System.EventHandler(this.queryRTBox_TextChanged);
-            // 
+            this.queryRTBox.TextChanged += new System.EventHandler(this.QueryRTBox_TextChanged);
+            //
             // label6
-            // 
+            //
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
@@ -860,9 +861,9 @@ namespace CS_Proxy
             this.label6.Size = new System.Drawing.Size(45, 15);
             this.label6.TabIndex = 1;
             this.label6.Text = "Pages:";
-            // 
+            //
             // tabPage4
-            // 
+            //
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.linkLabel5);
             this.tabPage4.Controls.Add(this.label10);
@@ -879,9 +880,9 @@ namespace CS_Proxy
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "About";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
+            //
             // label11
-            // 
+            //
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(300, 6);
@@ -889,29 +890,30 @@ namespace CS_Proxy
             this.label11.Size = new System.Drawing.Size(68, 15);
             this.label11.TabIndex = 8;
             this.label11.Text = "Version 1.3";
-            // 
+            //
             // linkLabel5
-            // 
+            //
             this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(105, 75);
+            this.linkLabel5.Location = new System.Drawing.Point(26, 75);
             this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(148, 16);
+            this.linkLabel5.Size = new System.Drawing.Size(327, 16);
             this.linkLabel5.TabIndex = 7;
             this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "https://github.com/jpxue";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
-            // 
+            this.linkLabel5.Text = "https://github.com/jpxue/Proxy_Scanner_Scraper_AIO";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel5_LinkClicked);
+            //
             // label10
-            // 
+            //
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(61, 54);
+            this.label10.Location = new System.Drawing.Point(50, 59);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(254, 16);
+            this.label10.Size = new System.Drawing.Size(282, 16);
             this.label10.TabIndex = 6;
-            this.label10.Text = "You can find the source of this program at:";
-            // 
+            this.label10.Text = "You can find the OLD source of the program at:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            //
             // linkLabel4
-            // 
+            //
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.Location = new System.Drawing.Point(97, 294);
             this.linkLabel4.Name = "linkLabel4";
@@ -919,28 +921,28 @@ namespace CS_Proxy
             this.linkLabel4.TabIndex = 5;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "http://www.iconarchive.com";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel4_LinkClicked);
+            //
             // label9
-            // 
+            //
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(97, 275);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 16);
             this.label9.TabIndex = 4;
             this.label9.Text = "- Artist of this ugly ass icon";
-            // 
+            //
             // label8
-            // 
+            //
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(94, 224);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(156, 16);
             this.label8.TabIndex = 3;
             this.label8.Text = "- Ruslan Khuduev (X-Net)";
-            // 
+            //
             // label7
-            // 
+            //
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(77, 200);
@@ -948,18 +950,18 @@ namespace CS_Proxy
             this.label7.Size = new System.Drawing.Size(63, 20);
             this.label7.TabIndex = 2;
             this.label7.Text = "Credits:";
-            // 
+            //
             // pictureBox1
-            // 
+            //
             this.pictureBox1.Image = global::CS_Proxy.Properties.Resources.icon;
             this.pictureBox1.Location = new System.Drawing.Point(7, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(33, 33);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
+            //
             // linkLabel3
-            // 
+            //
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Location = new System.Drawing.Point(94, 243);
             this.linkLabel3.Name = "linkLabel3";
@@ -967,46 +969,46 @@ namespace CS_Proxy
             this.linkLabel3.TabIndex = 0;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "https://github.com/X-rus/xNet";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
-            // 
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
+            //
             // contextMenuStrip1
-            // 
+            //
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.toClipboardToolStripMenuItem,
             this.toolStripSeparator1,
             this.clearToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(143, 76);
-            // 
+            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 76);
+            //
             // saveToolStripMenuItem
-            // 
+            //
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            //
             // toClipboardToolStripMenuItem
-            // 
+            //
             this.toClipboardToolStripMenuItem.Name = "toClipboardToolStripMenuItem";
-            this.toClipboardToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.toClipboardToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.toClipboardToolStripMenuItem.Text = "To Clipboard";
-            this.toClipboardToolStripMenuItem.Click += new System.EventHandler(this.toClipboardToolStripMenuItem_Click);
-            // 
+            this.toClipboardToolStripMenuItem.Click += new System.EventHandler(this.ToClipboardToolStripMenuItem_Click);
+            //
             // toolStripSeparator1
-            // 
+            //
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
-            // 
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            //
             // clearToolStripMenuItem
-            // 
+            //
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
-            // 
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.ClearToolStripMenuItem_Click);
+            //
             // Form1
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 401);

@@ -76,7 +76,7 @@ namespace CS_Proxy {
 
         //Uses wininet.dll (best method)
         private static bool HasInternet() {
-            return InternetGetConnectedState( out var desc, 0 );
+            return InternetGetConnectedState( out var _, 0 );
         }
 
         private void ScapePanelUI() {
@@ -87,7 +87,7 @@ namespace CS_Proxy {
             urlsToScrapeLbl.Location = new Point( importURLsBtn.Location.X - urlsToScrapeLbl.Width - 15, urlsToScrapeLbl.Location.Y );
         }
 
-        private void importURLsBtn_Click(object sender, EventArgs e) {
+        private void ImportURLsBtn_Click(object sender, EventArgs e) {
             var ofd = new OpenFileDialog();
             ofd.Title = "URLs To Scrape";
             ofd.Filter = "Text Files|*.txt";
@@ -136,14 +136,14 @@ namespace CS_Proxy {
         }
 
 
-        private void clearScrapeList() {
+        private void ClearScrapeList() {
             ProxiesScraped.Clear();
             scrapedListBox.Items.Clear();
             scrapedLbl.Text = string.Format( "Scraped: {0}", ProxiesScraped.Count.ToString() );
             ScapePanelUI();
         }
-        private void clearScrapedBtn_Click(object sender, EventArgs e) {
-            clearScrapeList();
+        private void ClearScrapedBtn_Click(object sender, EventArgs e) {
+            ClearScrapeList();
         }
 
         private static List<List<string>> Spliterino(List<string> source, int chunkSize) {
@@ -154,7 +154,7 @@ namespace CS_Proxy {
                 .ToList();
         }
 
-        private void scrapeBtn_Click(object sender, EventArgs e) {
+        private void ScrapeBtn_Click(object sender, EventArgs e) {
             if ( scrapeBtn.Text.StartsWith( "Stop" ) ) {
                 scrapeBtn.Invoke( new Action( () => scrapeBtn.Enabled = false ) ); //spam click
                 scrapeBtn.Text = "Stopping...";
@@ -173,7 +173,7 @@ namespace CS_Proxy {
                 return;
             }
 
-            clearScrapeList();
+            ClearScrapeList();
             scrapeProgBar.Maximum = URLMgr.Count;
             scrapedPanel.Visible = true;
 
@@ -204,7 +204,7 @@ namespace CS_Proxy {
             }
         }
 
-        private void saveScrapedBtn_Click(object sender, EventArgs e) {
+        private void SaveScrapedBtn_Click(object sender, EventArgs e) {
             var sfd = new SaveFileDialog();
             sfd.FileName = "ProxiesScraped.txt";
             sfd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -217,7 +217,7 @@ namespace CS_Proxy {
             }
         }
 
-        private void scrapedToScanner() {
+        private void ScrapedToScanner() {
             if ( ProxiesScraped.Count == 0 ) {
                 MessageBox.Show( "Nothing to send to Scanner... Try scraping some proxies or import a list from the Scanner tab.", "No Scraped Proxies", MessageBoxButtons.OK, MessageBoxIcon.Warning );
                 return;
@@ -237,8 +237,8 @@ namespace CS_Proxy {
             EnableScanUI();
             tabControl1.Invoke( new Action( () => tabControl1.SelectedIndex = 1 ) );
         }
-        private void toScannerBtn_Click(object sender, EventArgs e) {
-            scrapedToScanner();
+        private void ToScannerBtn_Click(object sender, EventArgs e) {
+            ScrapedToScanner();
             if ( scrapedListBox.Items.Count > ProxyMgr.Count )
                 MessageBox.Show( string.Concat( (scrapedListBox.Items.Count - ProxyMgr.Count).ToString(), " DANGEROUS Proxies were removed." ), "Filter", MessageBoxButtons.OK, MessageBoxIcon.Information );
             else
@@ -256,7 +256,7 @@ namespace CS_Proxy {
             scanProxiesBtn.Invoke( new Action( () => scanProxiesBtn.Enabled = ProxyMgr.Count > 0 ) );
         }
 
-        private void importProxiesBtn_Click(object sender, EventArgs e) {
+        private void ImportProxiesBtn_Click(object sender, EventArgs e) {
             var ofd = new OpenFileDialog();
             ofd.Title = "Proxies";
             ofd.Filter = "Text Files|*.txt";
@@ -303,7 +303,7 @@ namespace CS_Proxy {
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
         }
 
-        private void clearProxyView() {
+        private void ClearProxyView() {
             proxyView.Items.Clear();
         }
 
@@ -321,7 +321,7 @@ namespace CS_Proxy {
                 return;
             }
 
-            clearProxyView();
+            ClearProxyView();
             if ( statusStrip2.Parent.InvokeRequired ) {
                 statusStrip2.Parent.Invoke( new MethodInvoker( delegate { scanProgBar.Maximum = ProxyMgr.Count; } ) );
                 statusStrip2.Parent.Invoke( new MethodInvoker( delegate { scanPercentLbl.Text = "0%"; } ) );
@@ -337,10 +337,10 @@ namespace CS_Proxy {
 
             var TotalThreads = Convert.ToInt32( threadsProxiesNumUpDown.Value );
             MyProxy.Timeout = Convert.ToInt32( timeoutProxiesNumUpDown.Value ) * 1000;
-            calcTimeoutQuartiles();
+            CalcTimeoutQuartiles();
 
-            uiTimer.Elapsed += async (sender, e) => await UpdateScannerUI();
-            uiTimer.Start();
+            _uiTimer.Elapsed += async (sender, e) => await UpdateScannerUI();
+            _uiTimer.Start();
 
             //Create the Threads
             if ( Thread.CurrentThread.Name == null )
@@ -371,7 +371,7 @@ namespace CS_Proxy {
             ScanStart = DateTime.Now;
         }
 
-        private void scanProxiesBtn_Click(object sender, EventArgs e) {
+        private void ScanProxiesBtn_Click(object sender, EventArgs e) {
             if ( !HasInternet() ) {
                 statusLbl.Text = "Status: No Internet";
                 MessageBox.Show( "You do NOT have access to the internet.", "No Internet", MessageBoxButtons.OK, MessageBoxIcon.Warning );
@@ -380,53 +380,53 @@ namespace CS_Proxy {
             Scan();
         }
 
-        private void calcTimeoutQuartiles() {
+        private void CalcTimeoutQuartiles() {
             timeout50 = MyProxy.Timeout / 2;
             timeout25 = MyProxy.Timeout / 4;
             timeout75 = timeout25 + timeout50;
         }
 
-        private void timeoutProxiesNumUpDown_ValueChanged(object sender, EventArgs e) {
+        private void TimeoutProxiesNumUpDown_ValueChanged(object sender, EventArgs e) {
             MyProxy.Timeout = Convert.ToInt32( timeoutNumUpDown.Value ) * 1000;
-            calcTimeoutQuartiles();
+            CalcTimeoutQuartiles();
         }
 
-        private void proxyJudgesComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+        private void ProxyJudgesComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             MyProxy.Judge = proxyJudgesComboBox.SelectedItem.ToString();
         }
 
-        private void httpCheck_CheckedChanged(object sender, EventArgs e) {
+        private void HttpCheck_CheckedChanged(object sender, EventArgs e) {
             MyProxy.ScanHTTP = httpCheck.Checked;
             scanProxiesBtn.Enabled = !(!httpCheck.Checked && !socksCheck.Checked || ProxyMgr.Count <= 0);
         }
 
-        private void socksCheck_CheckedChanged(object sender, EventArgs e) {
+        private void SocksCheck_CheckedChanged(object sender, EventArgs e) {
             MyProxy.ScanSOCKS = socksCheck.Checked;
             scanProxiesBtn.Enabled = !(!httpCheck.Checked && !socksCheck.Checked || ProxyMgr.Count <= 0);
         }
 
-        private void clearToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void ClearToolStripMenuItem_Click(object sender, EventArgs e) {
             proxyView.Items.Clear();
             aliveLbl.Text = "Alive = 0";
             deadLbl.Text = "Dead = 0";
         }
 
-        private void toClipboardToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void ToClipboardToolStripMenuItem_Click(object sender, EventArgs e) {
             var outputForm = new Form2( true, false, "To Clipboard", ProxyMgr );
             outputForm.Show();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e) {
             var outputForm = new Form2( false, true, "Save", ProxyMgr );
             outputForm.Show();
         }
 
-        private void questionScraperBtn_Click(object sender, EventArgs e) {
+        private void QuestionScraperBtn_Click(object sender, EventArgs e) {
             MessageBox.Show( string.Format( "This tab is used to scrape proxies off a given list of URLs.{0}Just hit the 'Import URLs' button and click the 'Scrape' button!", Environment.NewLine ),
                 "?", MessageBoxButtons.OK, MessageBoxIcon.Information );
         }
 
-        private void harvestBtn_Click(object sender, EventArgs e) {
+        private void HarvestBtn_Click(object sender, EventArgs e) {
             if ( !HasInternet() ) {
                 MessageBox.Show( "You do NOT have access to the internet.", "No Internet", MessageBoxButtons.OK, MessageBoxIcon.Warning );
                 return;
@@ -448,7 +448,7 @@ namespace CS_Proxy {
             }
         }
 
-        private void clearHarvestBtn_Click(object sender, EventArgs e) {
+        private void ClearHarvestBtn_Click(object sender, EventArgs e) {
             harvestBox.Items.Clear();
             queriesLeftLbl.Text = "";
             urlsHarvestedLbl.Text = "URLs: 0";
@@ -512,7 +512,7 @@ namespace CS_Proxy {
                         "Scraper", MessageBoxButtons.OK, MessageBoxIcon.Information );
                 } else {
                     //AUTO-SCAN
-                    scrapedToScanner();
+                    ScrapedToScanner();
                     Scan();
                 }
             } else
@@ -572,7 +572,7 @@ namespace CS_Proxy {
             //proxyView.Invoke(new Action(() => proxyView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)));
         }
 
-        System.Timers.Timer uiTimer = new System.Timers.Timer( 500 );
+        readonly System.Timers.Timer _uiTimer = new System.Timers.Timer( 500 );
         private Task UpdateScannerUI() //This is updated periodically (on separate thread/timer) rather than potentially hundreds of threads calling this
         {
             if ( Scanner.TerminateThreads )
@@ -595,7 +595,7 @@ namespace CS_Proxy {
             }
 
             if ( Scanner.Threads == 0 && Scanner.Scanned != 0 ) {
-                uiTimer.Stop();
+                _uiTimer.Stop();
                 scanProxiesBtn.Invoke( new Action( () => scanProxiesBtn.Text = "Scan" ) );
                 scanProxiesBtn.Invoke( new Action( () => scanProxiesBtn.Enabled = true ) );
                 threadsProxiesNumUpDown.Invoke( new Action( () => threadsProxiesNumUpDown.Enabled = true ) );
@@ -616,12 +616,12 @@ namespace CS_Proxy {
         }
         #endregion
 
-        private void deleteHarvestItemBtn_Click(object sender, EventArgs e) {
+        private void DeleteHarvestItemBtn_Click(object sender, EventArgs e) {
             harvestBox.Items.RemoveAt( harvestBox.SelectedIndex );
             urlsHarvestedLbl.Invoke( new Action( () => urlsHarvestedLbl.Text = string.Concat( "URLs: ", harvestBox.Items.Count.ToString() ) ) );
         }
 
-        private void saveHarvestBtn_Click(object sender, EventArgs e) {
+        private void SaveHarvestBtn_Click(object sender, EventArgs e) {
             var sfd = new SaveFileDialog();
             sfd.FileName = "URLs.txt";
             sfd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -634,11 +634,11 @@ namespace CS_Proxy {
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             System.Diagnostics.Process.Start( "https://msdn.microsoft.com/en-us/library/ff795620.aspx" );
         }
 
-        private void toScraperBtn_Click(object sender, EventArgs e) {
+        private void ToScraperBtn_Click(object sender, EventArgs e) {
             URLMgr.Clear();
             foreach ( var o in harvestBox.Items )
                 URLMgr.Add( o.ToString() );
@@ -647,7 +647,7 @@ namespace CS_Proxy {
             tabControl1.SelectedIndex = 0;
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             DateTime today = DateTime.Now;
             MessageBox.Show( string.Concat( "{d} = ", today.ToString( "d" ), Environment.NewLine,
             "{dd} = ", today.ToString( "dd" ), Environment.NewLine,
@@ -658,19 +658,19 @@ namespace CS_Proxy {
             "{yyyy} = ", today.ToString( "yyyy" ) ), "Operators", MessageBoxButtons.OK, MessageBoxIcon.Information );
         }
 
-        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             System.Diagnostics.Process.Start( linkLabel5.Text );
         }
 
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             System.Diagnostics.Process.Start( linkLabel3.Text );
         }
 
-        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             System.Diagnostics.Process.Start( linkLabel4.Text );
         }
 
-        private Regex highlightRegex = new Regex( "{d}|{dd}|{mm}|{mmm}|{mmmm}|{yy}|{yyyy}" ); // {(./?)}
+        private readonly Regex _highlightRegex = new Regex( "{d}|{dd}|{mm}|{mmm}|{mmmm}|{yy}|{yyyy}" ); // {(./?)}
         private void HighlightQueryBox() {
             var currIndex = queryRTBox.SelectionStart;
 
@@ -679,7 +679,7 @@ namespace CS_Proxy {
             queryRTBox.SelectionColor = Color.Teal;
             queryRTBox.SelectionFont = new Font( FontFamily.GenericSansSerif, 8.0F, FontStyle.Regular );
 
-            MatchCollection matches = highlightRegex.Matches( queryRTBox.Text );
+            MatchCollection matches = _highlightRegex.Matches( queryRTBox.Text );
             //Highlight
             if ( matches.Count > 0 ) {
                 foreach ( Match match in matches ) {
@@ -692,7 +692,7 @@ namespace CS_Proxy {
             queryRTBox.Select( currIndex, 0 );
             queryRTBox.DeselectAll();
         }
-        private void queryRTBox_TextChanged(object sender, EventArgs e) {
+        private void QueryRTBox_TextChanged(object sender, EventArgs e) {
             if ( queryRTBox.Text.Contains( "{" ) )
                 HighlightQueryBox();
         }
