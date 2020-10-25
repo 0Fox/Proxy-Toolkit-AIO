@@ -15,22 +15,19 @@
  *along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using CS_Proxy.Classes.Multithreaded;
+using CS_Proxy.Lists;
+
 using System;
 using System.Windows.Forms;
 
-using CS_Proxy.Lists;
-using CS_Proxy.Classes.Multithreaded;
+namespace CS_Proxy {
+    public partial class Form2 : Form {
+        readonly ProxyManager ProxyMgr;
+        readonly bool ToClip = false;
+        readonly bool ToFile = false;
 
-namespace CS_Proxy
-{
-    public partial class Form2 : Form
-    {
-        ProxyManager ProxyMgr;
-        bool ToClip = false;
-        bool ToFile = false;
-
-        public Form2(bool toClip, bool toFile, string wndName, ProxyManager pmgr)
-        {
+        public Form2(bool toClip, bool toFile, string wndName, ProxyManager pmgr) {
             ToClip = toClip;
             ToFile = toFile;
             InitializeComponent();
@@ -38,60 +35,52 @@ namespace CS_Proxy
             ProxyMgr = pmgr;
         }
 
-        private string GetSaveLocation()
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
+        private string GetSaveLocation() {
+            var sfd = new SaveFileDialog();
             sfd.FileName = "Proxies.txt";
             sfd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
 
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if ( sfd.ShowDialog() == DialogResult.OK )
                 return sfd.FileName;
 
             return string.Empty;
         }
 
-        private void Output(ProxyManager.ProxyGeneralType type)
-        {
-            if (ToFile)
-            {
-                string file = GetSaveLocation();
-                if (file != string.Empty)
-                    ProxyMgr.Output(type, false, file, eliteCheck.Checked, highCheck.Checked, transCheck.Checked);
+        private void Output(ProxyManager.ProxyGeneralType type) {
+            if ( ToFile ) {
+                var file = GetSaveLocation();
+                if ( file != string.Empty )
+                    ProxyMgr.Output( type, false, file, eliteCheck.Checked, highCheck.Checked, transCheck.Checked );
             }
-            if (ToClip)
-                ProxyMgr.Output(type, true, string.Empty, eliteCheck.Checked, highCheck.Checked, transCheck.Checked);
+            if ( ToClip )
+                ProxyMgr.Output( type, true, string.Empty, eliteCheck.Checked, highCheck.Checked, transCheck.Checked );
 
             System.Media.SystemSounds.Beep.Play();
             this.Close();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            label1.Text = string.Concat("ALL = ", Scanner.Alive.ToString(), "    |    HTTP = ", Scanner.Https.ToString(), "    |    SOCKS = ", Scanner.Socks.ToString());
-            label2.Text = string.Concat("L3 = ", Scanner.Elite.ToString(), "    |    L2 = ", Scanner.High.ToString(), "    |    L1 = ", Scanner.Trans.ToString());
+        private void Form2_Load(object sender, EventArgs e) {
+            label1.Text = string.Concat( "ALL = ", Scanner.Alive.ToString(), "    |    HTTP = ", Scanner.Https.ToString(), "    |    SOCKS = ", Scanner.Socks.ToString() );
+            label2.Text = string.Concat( "L3 = ", Scanner.Elite.ToString(), "    |    L2 = ", Scanner.High.ToString(), "    |    L1 = ", Scanner.Trans.ToString() );
             allBtn.Enabled = Scanner.Https + Scanner.Socks > 0;
             httpBtn.Enabled = Scanner.Https > 0;
             socks4Btn.Enabled = Scanner.Socks > 0;
         }
 
-        private void allBtn_Click(object sender, EventArgs e)
-        {
-            Output(ProxyManager.ProxyGeneralType.ALL);
+        private void allBtn_Click(object sender, EventArgs e) {
+            Output( ProxyManager.ProxyGeneralType.ALL );
         }
 
-        private void httpBtn_Click(object sender, EventArgs e)
-        {
-            Output(ProxyManager.ProxyGeneralType.HTTP);
+        private void httpBtn_Click(object sender, EventArgs e) {
+            Output( ProxyManager.ProxyGeneralType.HTTP );
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Output(ProxyManager.ProxyGeneralType.SOCKS4);
+        private void button3_Click(object sender, EventArgs e) {
+            Output( ProxyManager.ProxyGeneralType.SOCKS4 );
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Output(ProxyManager.ProxyGeneralType.SOCKS5);
+        private void button1_Click(object sender, EventArgs e) {
+            Output( ProxyManager.ProxyGeneralType.SOCKS5 );
         }
     }
 }

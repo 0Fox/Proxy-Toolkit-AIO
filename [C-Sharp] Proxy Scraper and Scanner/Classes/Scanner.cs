@@ -15,17 +15,16 @@
  *along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using CS_Proxy.Lists;
+using CS_Proxy.Proxy;
+
 using System;
 using System.Threading;
 
 using xNet;
-using CS_Proxy.Proxy;
-using CS_Proxy.Lists;
 
-namespace CS_Proxy.Classes.Multithreaded
-{
-    public class Scanner
-    {
+namespace CS_Proxy.Classes.Multithreaded {
+    public class Scanner {
         private static ProxyManager ProxyMgr;
 
         public static bool TerminateThreads { get; set; }
@@ -35,7 +34,7 @@ namespace CS_Proxy.Classes.Multithreaded
 
         public static int Scanned { get; private set; } //dead + alive
         public static int Alive { get; private set; } //proxies alive
-        public static int Dead { get; private set; } //dead proxies 
+        public static int Dead { get; private set; } //dead proxies
         public static int Https { get; private set; }
         public static int Socks { get; private set; }
         public static int Trans { get; private set; }
@@ -44,16 +43,13 @@ namespace CS_Proxy.Classes.Multithreaded
 
         public bool isRunning { get; private set; }
 
-        public Scanner(ProxyManager proxyMgr)
-        {
+        public Scanner(ProxyManager proxyMgr) {
             ProxyMgr = proxyMgr; //ref
             Reset();
         }
 
-        public bool Reset()
-        {
-            if (Threads == 0)
-            {
+        public bool Reset() {
+            if ( Threads == 0 ) {
                 Alive = 0;
                 Dead = 0;
                 Https = 0;
@@ -61,7 +57,7 @@ namespace CS_Proxy.Classes.Multithreaded
                 Trans = 0;
                 High = 0;
                 Elite = 0;
-                if(ProxyMgr!=null)
+                if ( ProxyMgr != null )
                     ProxyMgr.Reset();
 
                 return true;
@@ -70,20 +66,16 @@ namespace CS_Proxy.Classes.Multithreaded
             return false;
         }
 
-        public void Start()
-        {
-            if (ProxyMgr == null || ProxyMgr.Count < 1)
+        public void Start() {
+            if ( ProxyMgr == null || ProxyMgr.Count < 1 )
                 return;
 
             Threads++;
             MyProxy proxy = ProxyMgr.RecommendProxy(); //Recommended proxy is from List<> not HashSet<>
-            while (proxy != null && !TerminateThreads)
-            {
-                while (PauseThreads)
-                {
-                    Thread.Sleep(333);
-                    if (TerminateThreads)
-                    {
+            while ( proxy != null && !TerminateThreads ) {
+                while ( PauseThreads ) {
+                    Thread.Sleep( 333 );
+                    if ( TerminateThreads ) {
                         PauseThreads = false;
                         continue; //confirm to which loop this applies to nub
                     }
@@ -91,28 +83,25 @@ namespace CS_Proxy.Classes.Multithreaded
 
                 proxy.Test();
                 Scanned++;
-                if (proxy.isAlive)
-                {
+                if ( proxy.isAlive ) {
                     Alive++;
-                    if (proxy.Type == ProxyType.Http)
+                    if ( proxy.Type == ProxyType.Http )
                         Https++;
                     else
                         Socks++;
 
-                    if (proxy.AnonLevel == Anonymity.Transparent)
+                    if ( proxy.AnonLevel == Anonymity.Transparent )
                         Trans++;
-                    else if (proxy.AnonLevel == Anonymity.High)
+                    else if ( proxy.AnonLevel == Anonymity.High )
                         High++;
-                    else if (proxy.AnonLevel == Anonymity.Elite)
+                    else if ( proxy.AnonLevel == Anonymity.Elite )
                         Elite++;
 
-                    ProxyMgr.AddToAlive(proxy); //has lock in-case of IndexOutOfRange Exc
-                    Program.UI.AddToListView(proxy);
-                }
-                else
-                {
+                    ProxyMgr.AddToAlive( proxy ); //has lock in-case of IndexOutOfRange Exc
+                    Program.UI.AddToListView( proxy );
+                } else {
                     Dead++;
-                    ProxyMgr.Dead.Add(proxy);
+                    ProxyMgr.Dead.Add( proxy );
                 }
 
                 //Program.UI.UpdateScannerUI();
@@ -120,8 +109,8 @@ namespace CS_Proxy.Classes.Multithreaded
             }//stop scan
 
             Threads--;
-            Console.WriteLine(string.Format("***Thread '{0}' terminated, reason is '{1}'... '{2}' Threads left running...",
-                Thread.CurrentThread.Name, TerminateThreads?"STOP PRESSED":"FINISHED", Threads.ToString())); //Debug
+            Console.WriteLine( string.Format( "***Thread '{0}' terminated, reason is '{1}'... '{2}' Threads left running...",
+                Thread.CurrentThread.Name, TerminateThreads ? "STOP PRESSED" : "FINISHED", Threads.ToString() ) ); //Debug
 
             //Program.UI.UpdateScannerUI(); //Sends Message that scanning has finished!!!
             //Reset();

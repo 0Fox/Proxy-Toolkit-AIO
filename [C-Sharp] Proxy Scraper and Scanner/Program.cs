@@ -16,27 +16,21 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CS_Proxy
-{
-    static class Program
-    {
+namespace CS_Proxy {
+    static class Program {
         public static Form1 UI;
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
-        {
+        static void Main() {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault( false );
             UI = new Form1();
-            Application.Run(UI);
+            Application.Run( UI );
         }
     }
 }

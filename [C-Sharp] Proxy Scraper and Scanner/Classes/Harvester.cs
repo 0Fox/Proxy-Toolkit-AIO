@@ -15,188 +15,157 @@
  *along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using HtmlAgilityPack;
+
 using System;
 using System.Collections.Generic;
 using System.Net;
 
-using HtmlAgilityPack;
-
-namespace CS_Proxy.Classes.Singlethreaded
-{
-    //Not written for multi-threading - not worth it
-    class Harvester
-    {
-        private List<string> Queries = new List<string>();
-        private List<string> BlackList = new List<string>();
-        private List<string> BlogList = new List<string>();
-        private bool VisitBlogs = false; //In blogs/forums proxies are usually not in front page but threads -> if set to true -> visit blog/forum and obtain threads
-        private int Pages = 10;
-        private int Timeout;
+namespace CS_Proxy.Classes.Singlethreaded {
+    //Not written for multi-threading - not worth it. Also.. It doesn't really work.
+    class Harvester {
+        private readonly List<string> Queries = new List<string>();
+        private readonly List<string> BlackList = new List<string>();
+        private readonly List<string> BlogList = new List<string>();
+        private readonly bool VisitBlogs = false; //In blogs/forums proxies are usually not in front page but threads -> if set to true -> visit blog/forum and obtain threads
+        private readonly int Pages = 10;
+        private readonly int Timeout;
 
         public HashSet<string> Harvested = new HashSet<string>();
 
-        public Harvester(List<string> queries, int pages, bool visitBlogs, int timeout)
-        {
+        public Harvester(List<string> queries, int pages, bool visitBlogs, int timeout) {
             Pages = pages;
             VisitBlogs = visitBlogs;
             Timeout = timeout;
             PopulateBlackList();
-            if (visitBlogs)
+            if ( visitBlogs )
                 PopulateBlogList();
 
             DateTime today = DateTime.Now;
-            for (int q = 0; q < queries.Count; ++q)
-            {
-                string str = queries[q].ToLower();
-                str = str.Replace("{d}", today.ToString("d"));
-                str = str.Replace("{dd}", today.ToString("dd"));
-                str = str.Replace("{mm}", today.ToString("MM"));
-                str = str.Replace("{mmm}", today.ToString("MMM"));
-                str = str.Replace("{mmmm}", today.ToString("MMMM"));
-                str = str.Replace("{yy}", today.ToString("yy"));
-                str = str.Replace("{yyyy}", today.ToString("yyyy"));
+            for ( var q = 0; q < queries.Count; ++q ) {
+                var str = queries[q].ToLower();
+                str = str.Replace( "{d}", today.ToString( "d" ) );
+                str = str.Replace( "{dd}", today.ToString( "dd" ) );
+                str = str.Replace( "{mm}", today.ToString( "MM" ) );
+                str = str.Replace( "{mmm}", today.ToString( "MMM" ) );
+                str = str.Replace( "{mmmm}", today.ToString( "MMMM" ) );
+                str = str.Replace( "{yy}", today.ToString( "yy" ) );
+                str = str.Replace( "{yyyy}", today.ToString( "yyyy" ) );
 
-                Queries.Add(str.ToLower());
+                Queries.Add( str.ToLower() );
             }
         }
 
-        private void PopulateBlogList()
-        {
+        private void PopulateBlogList() {
             BlogList.Clear();
-            BlogList.Add("blog");
-            BlogList.Add("forum");
+            BlogList.Add( "blog" );
+            BlogList.Add( "forum" );
         }
 
-        private bool isInBloglist(string url)
-        {
-            foreach(string str in BlogList)
-            {
-                if (url.Contains(str))
+        private bool isInBloglist(string url) {
+            foreach ( var str in BlogList ) {
+                if ( url.Contains( str ) )
                     return true;
             }
             return false;
         }
 
-        private void PopulateBlackList()
-        {
+        private void PopulateBlackList() {
             BlackList.Clear();
-            BlackList.Add("javascript");
-            BlackList.Add("wiki");
-            BlackList.Add("microsoft");
-            BlackList.Add("facebook");
-            BlackList.Add("report");
-            BlackList.Add("twitter");
+            BlackList.Add( "javascript" );
+            BlackList.Add( "wiki" );
+            BlackList.Add( "microsoft" );
+            BlackList.Add( "facebook" );
+            BlackList.Add( "report" );
+            BlackList.Add( "twitter" );
         }
 
-        private bool isBlacklisted(string url)
-        {
-            for(int i = 0; i <BlackList.Count; ++i)
-            {
-                if (url.Contains(BlackList[i]))
+        private bool isBlacklisted(string url) {
+            for ( var i = 0; i < BlackList.Count; ++i ) {
+                if ( url.Contains( BlackList[i] ) )
                     return true;
             }
             return false;
         }
 
-        public void GetURLs()
-        {
-            MyWebClient wc = new MyWebClient();
+        public void GetURLs() {
+            var wc = new MyWebClient();
             wc.Timeout = Timeout;
 
-            int qNo = 0;
-            foreach (string query in Queries)
-            {
+            var qNo = 0;
+            foreach ( var query in Queries ) {
                 qNo++;
-                string searchURL = string.Concat("http://www.bing.com/search?q=", query);
+                var searchURL = string.Concat( "http://www.bing.com/search?q=", query );
 
-                for (int page = 1; page <= Pages; ++page)
-                {
-                    Console.WriteLine("Harvesting URLs from Page {0}", page.ToString());
-                    string html = string.Empty;
-                    try
-                    {
-                        html = wc.DownloadString(searchURL).Replace("&amp;", "&");
-                    }
-                    catch (WebException) { html = string.Empty; }
-                    catch (NotSupportedException) { html = string.Empty; }
-                    catch (ArgumentNullException) { html = string.Empty; }
-                    if (html == string.Empty)
+                for ( var page = 1; page <= Pages; ++page ) {
+                    Console.WriteLine( "Harvesting URLs from Page {0}", page.ToString() );
+                    var html = string.Empty;
+                    try {
+                        html = wc.DownloadString( searchURL ).Replace( "&amp;", "&" );
+                    } catch ( WebException ) { html = string.Empty; } catch ( NotSupportedException ) { html = string.Empty; } catch ( ArgumentNullException ) { html = string.Empty; }
+                    if ( html == string.Empty )
                         continue;
 
-                    string nextPageID = "title=\"Next page\" href=\"";
-                    int nextPageIndex = html.IndexOf(nextPageID);
-                    if (nextPageIndex > 0)
-                    {
-                        int start = nextPageIndex + nextPageID.Length;
-                        int end = html.IndexOf("\"", start);
-                        searchURL = string.Concat("http://www.bing.com", html.Substring(start, end - start)).Replace("&amp;","&");
-                    }
-                    else
+                    var nextPageID = "title=\"Next page\" href=\"";
+                    var nextPageIndex = html.IndexOf( nextPageID );
+                    if ( nextPageIndex > 0 ) {
+                        var start = nextPageIndex + nextPageID.Length;
+                        var end = html.IndexOf( "\"", start );
+                        searchURL = string.Concat( "http://www.bing.com", html.Substring( start, end - start ) ).Replace( "&amp;", "&" );
+                    } else
                         searchURL = string.Empty;
 
 
-                    HtmlDocument docu = new HtmlDocument();
-                    docu.LoadHtml(html);
-                    foreach (HtmlNode link in docu.DocumentNode.SelectNodes("//a[@href]"))
-                    {
+                    var docu = new HtmlDocument();
+                    docu.LoadHtml( html );
+                    foreach ( HtmlNode link in docu.DocumentNode.SelectNodes( "//a[@href]" ) ) {
                         // Get the value of the HREF attribute
-                        string url = link.GetAttributeValue("href", string.Empty);
+                        var url = link.GetAttributeValue( "href", string.Empty );
 
-                        if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
-                        {
-                            if (!isBlacklisted(url) && Harvested.Add(url))
-                            {
-                                Console.WriteLine(" - {0}", url);
-                                Program.UI.AddURL(url, qNo, Queries.Count, page, query);
+                        if ( Uri.IsWellFormedUriString( url, UriKind.Absolute ) ) {
+                            if ( !isBlacklisted( url ) && Harvested.Add( url ) ) {
+                                Console.WriteLine( " - {0}", url );
+                                Program.UI.AddURL( url, qNo, Queries.Count, page, query );
 
-                                if(isInBloglist(url))
-                                {
-                                    string _url = url.Replace("http://", "").Replace("https://", "");
-                                    string baseUrl = string.Concat("http://", _url.Contains("/") ? _url.Substring(0, _url.IndexOf("/")) : _url);
-                                    HtmlDocument docu2 = new HtmlDocument();
-                                    string newhtml = string.Empty;
-                                    try
-                                    {
-                                        newhtml = wc.DownloadString(url).Replace("&amp;", "&");
-                                    }
-                                    catch (WebException) { html = string.Empty; }
-                                    catch (NotSupportedException) { html = string.Empty; }
-                                    catch (ArgumentNullException) { html = string.Empty; }
-                                    if (newhtml == string.Empty)
+                                if ( isInBloglist( url ) ) {
+                                    var _url = url.Replace( "http://", "" ).Replace( "https://", "" );
+                                    var baseUrl = string.Concat( "http://", _url.Contains( "/" ) ? _url.Substring( 0, _url.IndexOf( "/" ) ) : _url );
+                                    var docu2 = new HtmlDocument();
+                                    var newhtml = string.Empty;
+                                    try {
+                                        newhtml = wc.DownloadString( url ).Replace( "&amp;", "&" );
+                                    } catch ( WebException ) { html = string.Empty; } catch ( NotSupportedException ) { html = string.Empty; } catch ( ArgumentNullException ) { html = string.Empty; }
+                                    if ( newhtml == string.Empty )
                                         continue;
 
-                                    docu2.LoadHtml(newhtml);
-                                    foreach (HtmlNode link2 in docu2.DocumentNode.SelectNodes("//a[@href]"))
-                                    {
-                                        string url2 = link2.GetAttributeValue("href", string.Empty);
-                                        if (url2.Length <= 1)
+                                    docu2.LoadHtml( newhtml );
+                                    foreach ( HtmlNode link2 in docu2.DocumentNode.SelectNodes( "//a[@href]" ) ) {
+                                        var url2 = link2.GetAttributeValue( "href", string.Empty );
+                                        if ( url2.Length <= 1 )
                                             continue;
 
-                                        if (!Uri.IsWellFormedUriString(url2, UriKind.Absolute)) //needs concatenating
+                                        if ( !Uri.IsWellFormedUriString( url2, UriKind.Absolute ) ) //needs concatenating
                                         {
-                                            if (url2[0] != '/')
-                                                url2 = string.Concat(url, url2);
+                                            if ( url2[0] != '/' )
+                                                url2 = string.Concat( url, url2 );
                                             else
-                                                url2 = string.Concat(baseUrl, url2);
+                                                url2 = string.Concat( baseUrl, url2 );
                                         }
 
-                                        if (Uri.IsWellFormedUriString(url2, UriKind.Absolute))
-                                        {
-                                            if (!isBlacklisted(url) && Harvested.Add(url))
-                                            {
-                                                Console.WriteLine(" - {0}", url);
-                                                Program.UI.AddURL(url, qNo, Queries.Count, page, query);
+                                        if ( Uri.IsWellFormedUriString( url2, UriKind.Absolute ) ) {
+                                            if ( !isBlacklisted( url ) && Harvested.Add( url ) ) {
+                                                Console.WriteLine( " - {0}", url );
+                                                Program.UI.AddURL( url, qNo, Queries.Count, page, query );
                                             }
-                                        }
-                                        else
-                                            Console.WriteLine("NO - " + url2);
+                                        } else
+                                            Console.WriteLine( "NO - " + url2 );
                                     }
                                 }
                             }
                         }
                     }
-                  
-                    if (searchURL == string.Empty)
+
+                    if ( searchURL == string.Empty )
                         break;
                 }
 
