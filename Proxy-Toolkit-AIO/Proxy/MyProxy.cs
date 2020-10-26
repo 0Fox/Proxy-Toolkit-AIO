@@ -188,6 +188,9 @@ namespace CS_Proxy.Proxy {
                             HttpResponse response = request.Get( Judge );
                             var html = response.ToString();
 
+                            if ( string.IsNullOrEmpty( html ) )
+                                throw new HttpException( "Empty response." ); // Host didn't give us any content. This is not expected behavior.
+
                             Latency = Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds );
 
                             if ( response.StatusCode != xNet.HttpStatusCode.OK ) {
