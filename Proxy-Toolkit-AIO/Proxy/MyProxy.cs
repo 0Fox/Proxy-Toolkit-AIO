@@ -189,7 +189,7 @@ namespace CS_Proxy.Proxy {
                             Latency = Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds );
 
                             if ( response.StatusCode != xNet.HttpStatusCode.OK ) {
-                                Console.WriteLine( "Status [{0}]: {1} on using {2}.", response.StatusCode.ToString(), proxy, type.ToString() );
+                                Console.WriteLine( $"Status [{response.StatusCode}]: {proxy} on using {type}." );
                                 continue;
                             }
 
@@ -202,17 +202,19 @@ namespace CS_Proxy.Proxy {
                                 AnonLevel = Anonymity.Elite;
 
                             Type = type;
-                            Console.WriteLine( "   Alive: {0} [{1}] [{2}] [{3}ms]", proxy, AnonLevel.ToString(), type.ToString(), Latency.ToString() );
+#if DEBUG
+                            Console.WriteLine( $"   Alive: {proxy} [{AnonLevel}] [{type}] [{Latency}ms]" );
+#endif
                             break;
                         } catch ( ArgumentException ) { } catch ( System.IO.InvalidDataException ) { } catch ( NullReferenceException ) { } //internal xNet err (request is null; tried if(req==null)break; to no avail
                     } catch ( HttpException exc ) {
-                        Console.WriteLine( "{0} HttpException: {1} on using {2}.", exc.Status.ToString(), proxy, type.ToString() );
+                        Console.WriteLine( $"{exc.Status} HttpException: {proxy} on using {type}." );
                     } catch ( ProxyException exc ) {
-                        Console.WriteLine( "{0} ProxyException: {1} on using {2}.", exc.Message, proxy, type.ToString() );
+                        Console.WriteLine( $"{exc} ProxyException: {proxy} on using {type}." );
                     } finally {
                         var timeTaken = Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds );
                         if ( timeTaken > Timeout ) {
-                            Console.WriteLine( "{0} IS DEAD :( --> [{1}ms]", proxy, timeTaken.ToString() );
+                            Console.WriteLine( $"{proxy} IS DEAD :( --> [{timeTaken}ms]" );
                             timeoutExceeded = true;
                         }
                     }
