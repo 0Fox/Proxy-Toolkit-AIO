@@ -608,6 +608,8 @@ namespace CS_Proxy {
         #endregion
 
         private void DeleteHarvestItemBtn_Click(object sender, EventArgs e) {
+            if ( harvestBox.SelectedIndex == -1 )
+                return;
             harvestBox.Items.RemoveAt( harvestBox.SelectedIndex );
             urlsHarvestedLbl.Invoke( new Action( () => urlsHarvestedLbl.Text = string.Concat( "URLs: ", harvestBox.Items.Count.ToString() ) ) );
         }
