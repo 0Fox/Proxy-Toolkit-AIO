@@ -36,7 +36,9 @@ namespace CS_Proxy.Proxy {
                 var parts = range.Split( new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries );
                 for ( var i = 0; i < parts.Length; ++i ) {
                     if ( !byte.TryParse( parts[i], out var b ) ) {
+#if DEBUG
                         Console.WriteLine( "Error parsing dangerous IP {0} into bytes!", range );
+#endif
                         ParsingError = true;
                     } else {
                         start[i] = b;
@@ -85,7 +87,9 @@ namespace CS_Proxy.Proxy {
                     continue;
 
                 if ( !byte.TryParse( parts[i], out var b ) ) {
+#if DEBUG
                     Console.WriteLine( "Error parsing dangerous IP {0} into bytes!", ip );
+#endif
                     ParsingError = true;
                 } else
                     bytes[i] = b;
@@ -134,8 +138,10 @@ namespace CS_Proxy.Proxy {
 
         public ProxyFilter(string filterFile) {
             IsInitialized = PopulateDangerousIPs( filterFile );
+#if DEBUG
             if ( !IsInitialized )
                 Console.WriteLine( "Dangerous IP range filter could NOT be initialized." );
+#endif
         }
 
         private bool IsNumeric(string str) {
@@ -169,8 +175,10 @@ namespace CS_Proxy.Proxy {
                 }
 
                 return true;
-            } else
-                Console.WriteLine( "Filter file '{0}' could NOT be found!", fileName );
+            }
+#if DEBUG
+            else Console.WriteLine( "Filter file '{0}' could NOT be found!", fileName );
+#endif
 
             return false;
         }

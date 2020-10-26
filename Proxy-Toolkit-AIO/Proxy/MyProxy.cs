@@ -75,7 +75,9 @@ namespace CS_Proxy.Proxy {
             }
 
             if ( IPv4 == string.Empty ) {
+#if DEBUG
                 Console.WriteLine( "Fetching machine IP Address!" );
+#endif
                 IPv4 = GetHTML( "http://v4.ipv6-test.com/api/myip.php" ).Trim();
 
                 if ( IPv4.Contains( "." ) == false || IPv4.Length < 7 ) {
@@ -83,8 +85,10 @@ namespace CS_Proxy.Proxy {
                     Match match = _proxy.Match( vars );
                     if ( match.Success )
                         IPv4 = match.Value;
+#if DEBUG
                     else
                         Console.WriteLine( "Critical Error: Cannot get IPv4 address from proxy judge." );
+#endif
                 }
             }
 
@@ -189,7 +193,9 @@ namespace CS_Proxy.Proxy {
                             Latency = Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds );
 
                             if ( response.StatusCode != xNet.HttpStatusCode.OK ) {
+#if DEBUG
                                 Console.WriteLine( $"Status [{response.StatusCode}]: {proxy} on using {type}." );
+#endif
                                 continue;
                             }
 
@@ -208,13 +214,19 @@ namespace CS_Proxy.Proxy {
                             break;
                         } catch ( ArgumentException ) { } catch ( System.IO.InvalidDataException ) { } catch ( NullReferenceException ) { } //internal xNet err (request is null; tried if(req==null)break; to no avail
                     } catch ( HttpException exc ) {
+#if DEBUG
                         Console.WriteLine( $"{exc.Status} HttpException: {proxy} on using {type}." );
+#endif
                     } catch ( ProxyException exc ) {
+#if DEBUG
                         Console.WriteLine( $"{exc} ProxyException: {proxy} on using {type}." );
+#endif
                     } finally {
                         var timeTaken = Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds );
                         if ( timeTaken > Timeout ) {
+#if DEBUG
                             Console.WriteLine( $"{proxy} IS DEAD :( --> [{timeTaken}ms]" );
+#endif
                             timeoutExceeded = true;
                         }
                     }
