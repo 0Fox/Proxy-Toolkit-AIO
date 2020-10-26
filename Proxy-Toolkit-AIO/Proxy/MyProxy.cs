@@ -43,7 +43,7 @@ namespace CS_Proxy.Proxy {
             return obj;
         }
 
-        public bool isAlive { get; private set; }
+        public bool isAlive { get; private set; } = false;
         public int Latency { get; private set; }
         public ProxyType Type { get; private set; }
         public Anonymity AnonLevel { get; private set; }
@@ -57,7 +57,6 @@ namespace CS_Proxy.Proxy {
             try {
                 html = new WebClient().DownloadString( url );
             } catch ( WebException ) { } catch ( ArgumentNullException ) { } catch ( NotSupportedException ) { }
-
             return html;
         }
 
