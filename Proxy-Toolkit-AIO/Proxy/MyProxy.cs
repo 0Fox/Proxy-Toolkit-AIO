@@ -106,8 +106,7 @@ namespace CS_Proxy.Proxy {
                     var strHost = parts[0].Contains( "." ) ? parts[0] : parts[1];
                     var strPort = parts[0].Contains( "." ) ? parts[1] : parts[0];
 
-                    int intPort;
-                    if ( int.TryParse( strPort, out intPort ) )
+                    if ( int.TryParse( strPort, out var intPort ) )
                         Initialize( strHost, intPort );
                     else {
                         IsMalformed = true; //unknown port
