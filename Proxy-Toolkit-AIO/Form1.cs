@@ -569,8 +569,7 @@ namespace CS_Proxy {
             //proxyView.Invoke(new Action(() => proxyView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)));
         }
 
-        private Task UpdateScannerUI() //This is updated periodically (on separate thread/timer) rather than potentially hundreds of threads calling this
-        {
+        private Task UpdateScannerUI() { //This is updated periodically (on separate thread/timer) rather than potentially hundreds of threads calling this
             if ( Scanner.TerminateThreads )
                 scanProxiesBtn.Invoke( new Action( () => scanProxiesBtn.Text = string.Concat( "Threads = ", Scanner.Threads.ToString() ) ) );
 

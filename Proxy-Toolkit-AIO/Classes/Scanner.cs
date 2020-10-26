@@ -60,10 +60,8 @@ namespace CS_Proxy.Classes.Multithreaded {
                 Scanned = 0;
                 if ( ProxyMgr != null )
                     ProxyMgr.Reset();
-
                 return true;
             }
-
             return false;
         }
 
@@ -104,17 +102,13 @@ namespace CS_Proxy.Classes.Multithreaded {
                     Dead++;
                     ProxyMgr.Dead.Add( proxy );
                 }
-
-                //Program.UI.UpdateScannerUI();
                 proxy = ProxyMgr.RecommendProxy(); //cycle proxies
-            }//stop scan
+            }
 
             Threads--;
             Console.WriteLine( string.Format( "***Thread '{0}' terminated, reason is '{1}'... '{2}' Threads left running...",
                 Thread.CurrentThread.Name, TerminateThreads ? "STOP PRESSED" : "FINISHED", Threads.ToString() ) ); //Debug
 
-            //Program.UI.UpdateScannerUI(); //Sends Message that scanning has finished!!!
-            //Reset();
         }
     }
 }
