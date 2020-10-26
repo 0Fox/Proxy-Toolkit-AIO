@@ -49,6 +49,7 @@ namespace CS_Proxy.Proxy {
         public Anonymity AnonLevel { get; private set; }
 
         public static string IPv4 = string.Empty; //should be immutable and not masked
+        private static readonly Regex _proxy = new Regex( @"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", RegexOptions.Compiled );
         #endregion
 
         private string GetHTML(string url) {
@@ -79,7 +80,7 @@ namespace CS_Proxy.Proxy {
 
                 if ( IPv4.Contains( "." ) == false || IPv4.Length < 7 ) {
                     var vars = GetHTML( Judge );
-                    Match match = Regex.Match( vars, @"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" );
+                    Match match = _proxy.Match( vars );
                     if ( match.Success )
                         IPv4 = match.Value;
                     else
