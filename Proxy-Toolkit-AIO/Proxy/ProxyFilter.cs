@@ -135,6 +135,8 @@ namespace CS_Proxy.Proxy {
     public class ProxyFilter {
         private readonly List<IPRange> DangerousIPs = new List<IPRange>();
         public bool IsInitialized { get; private set; }
+        //range of IPs or 1-3d. & (1-3d(.| ) {0 to 3x max})
+        private static readonly Regex _range = new Regex( @"((\d{1,3}\.(\d{1,3}(\.|\s)){0,3})(\–\s)(\d{1,3}\.(\d{1,3}(\.|\s)){0,3}))|(\d{1,3}\.(\d{1,3}(\.|\s)){0,3})", RegexOptions.Compiled );
 
         public ProxyFilter(string filterFile) {
             IsInitialized = PopulateDangerousIPs( filterFile );
@@ -157,8 +159,6 @@ namespace CS_Proxy.Proxy {
             var ipRangesFile = string.Concat( dir, "\\", fileName );
 
             if ( File.Exists( ipRangesFile ) ) {
-                const string regExpr = @"((\d{1,3}\.(\d{1,3}(\.|\s)){0,3})(\–\s)(\d{1,3}\.(\d{1,3}(\.|\s)){0,3}))|(\d{1,3}\.(\d{1,3}(\.|\s)){0,3})"; //range of IPs or 1-3d. & (1-3d(.| ) {0 to 3x max})
-
                 using ( var fs = new FileStream( ipRangesFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ) ) //IMP: Add exception checks
                 using ( var sr = new StreamReader( fs, Encoding.UTF8 ) ) {
                     string line;
@@ -166,10 +166,9 @@ namespace CS_Proxy.Proxy {
                         if ( line.Length == 0 || !IsNumeric( line[0] ) )
                             continue;
 
-                        Match match = Regex.Match( line, regExpr );
+                        Match match = _range.Match( line );
                         if ( match.Success ) {
-                            var str = match.ToString();
-                            DangerousIPs.Add( new IPRange( str ) );
+                            DangerousIPs.Add( new IPRange( match.Value ) );
                         }
                     }
                 }
