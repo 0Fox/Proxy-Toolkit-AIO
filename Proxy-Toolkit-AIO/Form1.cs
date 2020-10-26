@@ -438,7 +438,7 @@ namespace CS_Proxy {
                 var harvester = new Harvester( queries, Convert.ToInt32( pagesNumUpDown.Value ), false, Convert.ToInt32( timeoutNumUpDown.Value * 1000 ) );
                 var thread = new Thread( new ThreadStart( harvester.GetURLs ) );
                 thread.IsBackground = true;
-                thread.Name = string.Concat( "HarvesterThread" );
+                thread.Name = "HarvesterThread";
                 Thread.Sleep( 10 );
 
                 thread.Start();
