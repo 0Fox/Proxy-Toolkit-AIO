@@ -37,7 +37,7 @@ namespace CS_Proxy.Proxy {
                 for ( var i = 0; i < parts.Length; ++i ) {
                     if ( !byte.TryParse( parts[i], out var b ) ) {
 #if DEBUG
-                        Console.WriteLine( "Error parsing dangerous IP {0} into bytes!", range );
+                        Console.WriteLine( $"Error parsing dangerous IP {range} into bytes!" );
 #endif
                         ParsingError = true;
                     } else {
@@ -88,7 +88,7 @@ namespace CS_Proxy.Proxy {
 
                 if ( !byte.TryParse( parts[i], out var b ) ) {
 #if DEBUG
-                    Console.WriteLine( "Error parsing dangerous IP {0} into bytes!", ip );
+                    Console.WriteLine( $"Error parsing dangerous IP {ip} into bytes!" );
 #endif
                     ParsingError = true;
                 } else
@@ -176,7 +176,7 @@ namespace CS_Proxy.Proxy {
                 return true;
             }
 #if DEBUG
-            else Console.WriteLine( "Filter file '{0}' could NOT be found!", fileName );
+            else Console.WriteLine( $"Filter file '{fileName}' could NOT be found!" );
 #endif
 
             return false;
