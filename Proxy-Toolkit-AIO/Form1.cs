@@ -437,7 +437,7 @@ namespace CS_Proxy {
                 var thread = new Thread( new ThreadStart( harvester.GetURLs ) );
                 thread.IsBackground = true;
                 thread.Name = "HarvesterThread";
-                Thread.Sleep( 10 );
+                //Thread.Sleep( 10 ); Why?
 
                 thread.Start();
             }
@@ -646,16 +646,8 @@ namespace CS_Proxy {
                 "Operators", MessageBoxButtons.OK, MessageBoxIcon.Information );
         }
 
-        private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start( linkLabel5.Text );
-        }
-
-        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start( linkLabel3.Text );
-        }
-
-        private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start( linkLabel4.Text );
+        private void OpenURL_LinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start( (sender as LinkLabel).Text );
         }
 
         private readonly Regex _highlightRegex = new Regex( "{d}|{dd}|{mm}|{mmm}|{mmmm}|{yy}|{yyyy}" ); // {(./?)}

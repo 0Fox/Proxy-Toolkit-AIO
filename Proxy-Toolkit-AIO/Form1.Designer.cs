@@ -110,6 +110,8 @@ namespace CS_Proxy
             this.queryRTBox = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.label10 = new System.Windows.Forms.Label();
@@ -443,10 +445,9 @@ namespace CS_Proxy
             this.proxyJudgesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proxyJudgesComboBox.FormattingEnabled = true;
             this.proxyJudgesComboBox.Items.AddRange(new object[] {
-                "http://httpheader.net/azenv.php",
-                "http://httpbin.org/get?show_env",
-                "http://azenv.net/",
-            });
+            "http://httpheader.net/azenv.php",
+            "http://httpbin.org/get?show_env",
+            "http://azenv.net/"});
             this.proxyJudgesComboBox.Location = new System.Drawing.Point(13, 29);
             this.proxyJudgesComboBox.Name = "proxyJudgesComboBox";
             this.proxyJudgesComboBox.Size = new System.Drawing.Size(206, 21);
@@ -858,6 +859,8 @@ namespace CS_Proxy
             //
             // tabPage4
             //
+            this.tabPage4.Controls.Add(this.linkLabel6);
+            this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.linkLabel5);
             this.tabPage4.Controls.Add(this.label10);
@@ -875,15 +878,35 @@ namespace CS_Proxy
             this.tabPage4.Text = "About";
             this.tabPage4.UseVisualStyleBackColor = true;
             //
+            // linkLabel6
+            //
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Location = new System.Drawing.Point(94, 208);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(145, 16);
+            this.linkLabel6.TabIndex = 10;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "https://github.com/0Fox";
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenURL_LinkLabelClicked);
+            //
+            // label12
+            //
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(94, 192);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(165, 16);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "- 0Fox (Fixes and updates)";
+            //
             // label11
             //
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(300, 6);
+            this.label11.Location = new System.Drawing.Point(293, 6);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 15);
+            this.label11.Size = new System.Drawing.Size(78, 15);
             this.label11.TabIndex = 8;
-            this.label11.Text = "Version 1.3";
+            this.label11.Text = "Version 2.1.0";
             //
             // linkLabel5
             //
@@ -894,7 +917,7 @@ namespace CS_Proxy
             this.linkLabel5.TabIndex = 7;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "https://github.com/jpxue/Proxy_Scanner_Scraper_AIO";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel5_LinkClicked);
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenURL_LinkLabelClicked);
             //
             // label10
             //
@@ -909,18 +932,18 @@ namespace CS_Proxy
             // linkLabel4
             //
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(97, 294);
+            this.linkLabel4.Location = new System.Drawing.Point(94, 275);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(168, 16);
             this.linkLabel4.TabIndex = 5;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "http://www.iconarchive.com";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel4_LinkClicked);
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenURL_LinkLabelClicked);
             //
             // label9
             //
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(97, 275);
+            this.label9.Location = new System.Drawing.Point(94, 259);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 16);
             this.label9.TabIndex = 4;
@@ -939,7 +962,7 @@ namespace CS_Proxy
             //
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(77, 200);
+            this.label7.Location = new System.Drawing.Point(74, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 20);
             this.label7.TabIndex = 2;
@@ -957,13 +980,13 @@ namespace CS_Proxy
             // linkLabel3
             //
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(94, 243);
+            this.linkLabel3.Location = new System.Drawing.Point(94, 240);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(177, 16);
             this.linkLabel3.TabIndex = 0;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "https://github.com/X-rus/xNet";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenURL_LinkLabelClicked);
             //
             // contextMenuStrip1
             //
@@ -1123,6 +1146,8 @@ namespace CS_Proxy
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.LinkLabel linkLabel6;
+        private System.Windows.Forms.Label label12;
     }
 }
 
