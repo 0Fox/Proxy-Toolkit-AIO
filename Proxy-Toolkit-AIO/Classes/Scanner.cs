@@ -106,9 +106,9 @@ namespace CS_Proxy.Classes.Multithreaded {
             }
 
             Threads--;
-            Console.WriteLine( string.Format( "***Thread '{0}' terminated, reason is '{1}'... '{2}' Threads left running...",
-                Thread.CurrentThread.Name, TerminateThreads ? "STOP PRESSED" : "FINISHED", Threads.ToString() ) ); //Debug
-
+#if DEBUG
+            Console.WriteLine( $"***Thread '{Thread.CurrentThread.Name}' terminated, reason is '{(TerminateThreads ? "STOP PRESSED" : "FINISHED")}'... '{Threads.ToString()}' Threads left running..." ); //Debug
+#endif
         }
     }
 }
