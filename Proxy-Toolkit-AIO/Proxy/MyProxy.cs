@@ -186,7 +186,6 @@ namespace CS_Proxy.Proxy {
 
                         start = DateTime.Now;
                         try {
-                            request.Get( Judge );
                             HttpResponse response = request.Get( Judge );
                             var html = response.ToString();
 
