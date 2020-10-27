@@ -676,5 +676,16 @@ namespace CS_Proxy {
             if ( queryRTBox.Text.Contains( "{" ) )
                 HighlightQueryBox();
         }
+
+        private void CopySelectedToolStripMenuItem_Click(object sender, EventArgs e) {
+            if ( proxyView.SelectedItems.Count == 0 )
+                return;
+            var enumerator = proxyView.SelectedItems.GetEnumerator();
+            var sb = new StringBuilder();
+            while ( enumerator.MoveNext() )
+                sb.Append( (enumerator.Current as ListViewItem).Text + Environment.NewLine );
+
+            Clipboard.SetText( sb.ToString() );
+        }
     }
 }

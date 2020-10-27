@@ -126,6 +126,7 @@ namespace CS_Proxy
             this.toClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyThisOneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -993,36 +994,44 @@ namespace CS_Proxy
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.toClipboardToolStripMenuItem,
+            this.copyThisOneToolStripMenuItem,
             this.toolStripSeparator1,
             this.clearToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 120);
             //
             // saveToolStripMenuItem
             //
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             //
             // toClipboardToolStripMenuItem
             //
             this.toClipboardToolStripMenuItem.Name = "toClipboardToolStripMenuItem";
-            this.toClipboardToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.toClipboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.toClipboardToolStripMenuItem.Text = "To Clipboard";
             this.toClipboardToolStripMenuItem.Click += new System.EventHandler(this.ToClipboardToolStripMenuItem_Click);
             //
             // toolStripSeparator1
             //
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             //
             // clearToolStripMenuItem
             //
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.ClearToolStripMenuItem_Click);
+            //
+            // copyThisOneToolStripMenuItem
+            //
+            this.copyThisOneToolStripMenuItem.Name = "copyThisOneToolStripMenuItem";
+            this.copyThisOneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyThisOneToolStripMenuItem.Text = "Copy selected";
+            this.copyThisOneToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedToolStripMenuItem_Click);
             //
             // Form1
             //
@@ -1148,6 +1157,7 @@ namespace CS_Proxy
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStripMenuItem copyThisOneToolStripMenuItem;
     }
 }
 
